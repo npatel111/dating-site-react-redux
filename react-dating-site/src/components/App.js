@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
-import * as actions from '../actions/usersActions'
+// import getUsers from '../actions/getUsers'
+// import addUser from '../actions/addUser'
+import * as actions from '../actions/getUsers'
 import { bindActionCreators } from 'redux'
 import UserList from './UserList'
 import NewUser from './NewUser'
 import UserShow from './UserShow'
-
-
-
 class App extends Component {
   render() {
+    debugger
     return (
       <div className="App">
         <div className="App-header">
           <h2>Welcome to a dating site! Here are all the users</h2>
         </div>
         <NewUser actions={this.props.actions} users={this.props.users}/><br />
-        <UserList users={this.props.users} />
+        <UserList getUsers={this.props.getUsers} users={this.props.users} />
         {this.props.children}
       </div>
     );
