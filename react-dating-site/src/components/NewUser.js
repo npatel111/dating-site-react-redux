@@ -18,7 +18,6 @@ class NewUser extends Component {
   handleClick(event) {
     debugger
     event.preventDefault()
-    let newId = this.props.users.length + 1
     this.props.actions.addUser(this.state.name, this.state.age, this.state.gender, this.state.description)
     this.setState({name: "", age: "", gender: "", description: ""})
   }

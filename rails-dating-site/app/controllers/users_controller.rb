@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_before_action :verify_authenticity_token
 
   def index
     @users = User.all
@@ -12,9 +13,8 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-
     if @user.save
-      render json: @user, status: :created#, location: @user
+      render json: @user, status: :created, location: @user
     else
       render json: @song.errors, status: :unprocessable_entity
     end

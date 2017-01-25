@@ -1,7 +1,9 @@
 import $ from 'jquery';
 
-export function addUser(name, age, gender, description) {
+export function addUser(name,age, gender, description) {
+  debugger
   return function(dispatch) {
+    debugger
     $.ajax({
       url: 'http://localhost:3000/users',
       type: "POST",
