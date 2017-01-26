@@ -15,7 +15,7 @@ class App extends Component {
           <h2>Welcome to a dating site! Here are all the users</h2>
         </div>
         <NewUser actions={this.props.actions} users={this.props.users}/><br />
-        <UserList getUsers={this.props.getUsers} users={this.props.users} />
+        <UserList getUsers={this.props.getUsers} users={this.props.users} actions={this.props.actions}/>
         {this.props.children}
       </div>
     );
