@@ -41,3 +41,19 @@ export function editUser(id, name, age, gender, description) {
   })
   }
 }
+
+export function deleteUser(id, name, age, gender, description) {
+  return function(dispatch) {
+    $.ajax({
+      url: `http://localhost:3000/users/${id}`,
+      type: "DELETE",
+      data: {user: {id: id, name: name, age: age, gender: gender, description: description}}
+    }).done(function(resp){
+      debugger
+      return dispatch({
+         type: "DELETE_USER",
+         payload: {id: id, name: name, age: age, gender: gender, description: description}
+       })
+  })
+  }
+}

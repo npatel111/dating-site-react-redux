@@ -33,6 +33,8 @@ class UsersController < ApplicationController
 
   # DELETE /users/1
   def destroy
+    byebug
+    @user = User.find(params[:id])
     @user.destroy
   end
 
@@ -44,7 +46,7 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      # byebug
+      byebug
       params.require(:user).permit(:id, :name, :age, :gender, :description)
     end
 

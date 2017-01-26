@@ -11,6 +11,7 @@ class UserShow extends React.Component {
     super(props)
     this.handleEdit = this.handleEdit.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
     this.state = {editFormVisible: false, userInfo: {name: this.props.user.name, age: this.props.user.age, gender: this.props.user.gender, description: this.props.user.description}}
   }
 
@@ -34,6 +35,11 @@ class UserShow extends React.Component {
     this.setState({editFormVisible: !this.state.editFormVisible})
   }
 
+  handleDelete(event) {
+    debugger
+    this.props.actions.deleteUser(this.props.user.id, this.state.userInfo.name, this.state.userInfo.age, this.state.userInfo.gender, this.state.userInfo.description)
+  }
+
   render() {
     return(
       <div>
@@ -44,6 +50,7 @@ class UserShow extends React.Component {
           <p>{this.props.user.description}</p>
         </Link>
         <button onClick={this.handleEdit}>Edit User</button>
+        <button onClick={this.handleDelete}>Delete User</button>
         { this.state.editFormVisible ?
           <form onSubmit={this.handleSubmit} >
             Edit user: <br />
