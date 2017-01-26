@@ -7,7 +7,7 @@ import * as actions from '../actions/getUsers'
 
 
 class NewUser extends Component {
-  debugger
+  // debugger
   constructor(props) {
     super(props)
     this.state = {name: "", age: "", gender: "", description: ""}
@@ -16,7 +16,7 @@ class NewUser extends Component {
   }
 
   handleClick(event) {
-    debugger
+    // debugger
     event.preventDefault()
     this.props.actions.addUser(this.state.name, this.state.age, this.state.gender, this.state.description)
     this.setState({name: "", age: "", gender: "", description: ""})

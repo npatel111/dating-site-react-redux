@@ -6,7 +6,9 @@ export function getUsers() {
       url: 'http://localhost:3000/users',
       type: "GET",
     }).done(function(data){
+      debugger
       dispatch({type: "GET_USERS", payload: data})
+      // only gives user info without match info
     })
   }
 }
@@ -49,7 +51,6 @@ export function deleteUser(id, name, age, gender, description) {
       type: "DELETE",
       data: {user: {id: id, name: name, age: age, gender: gender, description: description}}
     }).done(function(resp){
-      debugger
       return dispatch({
          type: "DELETE_USER",
          payload: {id: id, name: name, age: age, gender: gender, description: description}

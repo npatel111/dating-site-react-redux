@@ -36,11 +36,12 @@ class UserShow extends React.Component {
   }
 
   handleDelete(event) {
-    debugger
+    // debugger
     this.props.actions.deleteUser(this.props.user.id, this.state.userInfo.name, this.state.userInfo.age, this.state.userInfo.gender, this.state.userInfo.description)
   }
 
   render() {
+    debugger
     return(
       <div>
         <Link to={'/users/' + this.props.user.id }>

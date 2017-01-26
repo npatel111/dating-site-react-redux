@@ -12,8 +12,11 @@ class UsersController < ApplicationController
   end
 
   def create
+    byebug
     @user = User.new(user_params)
     if @user.save
+      @match = Match.create(user_params)
+      @user.matches = Match.all.select {|person| person.id != @user.id}
       render json: @user, status: :created, location: @user
     else
       render json: @song.errors, status: :unprocessable_entity
@@ -33,9 +36,9 @@ class UsersController < ApplicationController
 
   # DELETE /users/1
   def destroy
-    byebug
     @user = User.find(params[:id])
     @user.destroy
+    #should this destroy that match as well?
   end
 
   private
@@ -46,7 +49,6 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      byebug
       params.require(:user).permit(:id, :name, :age, :gender, :description)
     end
 
