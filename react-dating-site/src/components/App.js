@@ -15,7 +15,7 @@ class App extends Component {
           <h2>Welcome to a dating site! Here are all the users</h2>
         </div>
         <NewUser actions={this.props.actions} users={this.props.users}/><br />
-        <UserList getUsers={this.props.getUsers} users={this.props.users} actions={this.props.actions}/>
+        <UserList matches={this.props.matches} getUsers={this.props.getUsers} users={this.props.users} actions={this.props.actions}/>
         {this.props.children}
       </div>
     );
@@ -24,7 +24,7 @@ class App extends Component {
 
 
 function mapStateToProps(state) {
-  return {users: state.users}
+  return {users: state.users, matches: state.matches}
 }
 
 function mapDispatchToProps(dispatch) {

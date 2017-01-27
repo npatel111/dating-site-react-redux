@@ -9,13 +9,12 @@ class UserList extends Component {
   }
 
   render() {
-    // debugger
     return (
       <ul className="list-group col-lg-6 col-lg-offset-3">
         {this.props.users.map((user, i) => {
           return (
               <li key={i} className="list-group-item">
-                  <UserShow users={this.props.users} user={user} actions={this.props.actions}/>
+                  <UserShow users={this.props.users} user={user} matches={this.props.matches} actions={this.props.actions}/>
               </li>
           )
         })}

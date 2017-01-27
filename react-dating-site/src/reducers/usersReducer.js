@@ -13,6 +13,8 @@ export default function usersReducer(state=[], action) {
       let user = state.filter(function(obj) { return obj.id === action.payload.id})
       let i = state.indexOf(user[0])
       return state.slice(0, i).concat(state.slice(i + 1))
+    case "GET_MATCHES":
+      return state
     default: return state
   }
 }

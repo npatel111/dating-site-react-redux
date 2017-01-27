@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import UserList from './UserList'
 import UserDetail from './UserDetail'
+import UserMatch from './UserMatchShow'
 import {Link} from 'react-router';
 
 
@@ -12,8 +13,15 @@ class UserShow extends React.Component {
     this.handleEdit = this.handleEdit.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
-    this.state = {editFormVisible: false, userInfo: {name: this.props.user.name, age: this.props.user.age, gender: this.props.user.gender, description: this.props.user.description}}
+    this.showMatches = this.showMatches.bind(this)
+    this.state = {matchesVisible: false, matches: null, editFormVisible: false, userInfo: {name: this.props.user.name, age: this.props.user.age, gender: this.props.user.gender, description: this.props.user.description}}
   }
+
+// componentDidMount(){
+//   this.setState({ matches: this.showMatches()})
+//
+// }
+
 
   handleEdit(event) {
     // event.preventDefault()
@@ -40,8 +48,16 @@ class UserShow extends React.Component {
     this.props.actions.deleteUser(this.props.user.id, this.state.userInfo.name, this.state.userInfo.age, this.state.userInfo.gender, this.state.userInfo.description)
   }
 
-  render() {
+  showMatches() {
     debugger
+    let id = this.props.user.id
+    let matches = this.props.matches.filter(function(match) {
+      return (match.id !== id)
+    })
+    this.setState({ matches: matches, matchesVisible: !this.state.matchesVisible})
+  }
+
+  render() {
     return(
       <div>
         <Link to={'/users/' + this.props.user.id }>
@@ -49,9 +65,12 @@ class UserShow extends React.Component {
           <p>{this.props.user.age}</p>
           <p>{this.props.user.gender}</p>
           <p>{this.props.user.description}</p>
+          {this.state.matchesVisible ? <UserMatch usermatches={this.state.matches} /> : null}
+
         </Link>
         <button onClick={this.handleEdit}>Edit User</button>
         <button onClick={this.handleDelete}>Delete User</button>
+        <button onClick={this.showMatches}>Show Matches</button>
         { this.state.editFormVisible ?
           <form onSubmit={this.handleSubmit} >
             Edit user: <br />

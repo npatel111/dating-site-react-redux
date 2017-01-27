@@ -13,6 +13,30 @@ export function getUsers() {
   }
 }
 
+export function getMatches() {
+  return function(dispatch) {
+    $.ajax({
+      url: 'http://localhost:3000/matches',
+      type: "GET",
+    }).done(function(data){
+      dispatch({type: "GET_MATCHES", payload: data})
+    })
+  }
+}
+
+export function getUserMatches(id) {
+  return function(dispatch) {
+    $.ajax({
+      url: 'http://localhost:3000/matches',
+      type: "GET",
+    }).done(function(data){
+      debugger
+      let matches = data.filter(function(match) { return match.id !== id})
+      dispatch({type: "GET_MATCHES", payload: matches})
+    })
+  }
+}
+
 export function addUser(name, age, gender, description) {
   return function(dispatch) {
     $.ajax({
