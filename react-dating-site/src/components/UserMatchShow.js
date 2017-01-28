@@ -16,7 +16,7 @@ export default function UserMatch(props) {
               <li>Description: {match.description}</li>
               <br /><br/>
             </ul>
-        
+
         )
       })}
     </div>

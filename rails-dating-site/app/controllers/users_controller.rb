@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    byebug
+    # byebug
     @user = User.new(user_params)
     if @user.save
       @match = Match.create(user_params)
@@ -49,7 +49,7 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:id, :name, :age, :gender, :description)
+      params.require(:user).permit(:id, :name, :age, :gender, :description, :looking_for)
     end
 
 

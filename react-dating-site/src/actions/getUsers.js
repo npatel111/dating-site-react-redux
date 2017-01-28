@@ -6,7 +6,7 @@ export function getUsers() {
       url: 'http://localhost:3000/users',
       type: "GET",
     }).done(function(data){
-      debugger
+      // debugger
       dispatch({type: "GET_USERS", payload: data})
       // only gives user info without match info
     })

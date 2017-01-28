@@ -33,12 +33,13 @@ class NewUser extends Component {
     return (
       <form  onSubmit={this.handleClick} >
         Add new user: <br />
-        <label>Name:</label>
+        <label>Pick a Username:</label>
         <input type="text" value={this.state.name} onChange={this.handleChange.bind(this, "name")} /><br />
         <label>Age: </label>
         <input type="text" value={this.state.age} onChange={this.handleChange.bind(this, "age")}/><br />
-        <label>Gender: </label>
-        <input type="text" value={this.state.gender} onChange={this.handleChange.bind(this, "gender")}/><br />
+        <label>Gender: </label><br />
+        Male <input type="radio" value="Male" checked={this.state.gender === "Male"} onChange={this.handleChange.bind(this, "gender")} />
+        Female <input type="radio" value="Female" checked={this.state.gender === "Female"} onChange={this.handleChange.bind(this, "gender")}/><br />
         <label>Description: </label>
         <input type="text" value={this.state.description} onChange={this.handleChange.bind(this, "description")}/><br />
         <input type="submit" />
