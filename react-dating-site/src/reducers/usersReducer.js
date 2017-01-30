@@ -3,6 +3,7 @@ export default function usersReducer(state=[], action) {
     case "GET_USERS":
       return state.concat(action.payload)
     case "ADD_USER":
+      debugger
       return [...state, action.payload]
     case "EDIT_USER":
     // does it switch up order if you edit something?

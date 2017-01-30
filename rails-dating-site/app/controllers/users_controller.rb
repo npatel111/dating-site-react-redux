@@ -12,11 +12,11 @@ class UsersController < ApplicationController
   end
 
   def create
-    # byebug
+    byebug
     @user = User.new(user_params)
     if @user.save
       @match = Match.create(user_params)
-      @user.matches = Match.all.select {|person| person.id != @user.id}
+      @user.matches = Match.all.select {|person| person.id != @user.id && person.looking_for == @user.gender && person.gender == @user.looking_for}
       render json: @user, status: :created, location: @user
     else
       render json: @song.errors, status: :unprocessable_entity
@@ -49,6 +49,7 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
+      byebug
       params.require(:user).permit(:id, :name, :age, :gender, :description, :looking_for)
     end
 

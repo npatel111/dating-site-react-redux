@@ -5,20 +5,19 @@ export default function UserMatch(props) {
   return (
     <div>
       <p>Matched With: </p>
-      {props.usermatches.map((match) => {
-        return (
-
-
-            <ul>
-              <li>Name: {match.name}</li>
-              <li>Age: {match.age}</li>
-              <li>Gender: {match.gender}</li>
-              <li>Description: {match.description}</li>
-              <br /><br/>
-            </ul>
-
-        )
-      })}
+      <div>{props.usermatches.length > 0 ? null : "No matches"}</div>
+        {props.usermatches.map((match) => {
+          return (
+              <ul>
+                <li>Name: {match.name}</li>
+                <li>Age: {match.age}</li>
+                <li>Gender: {match.gender}</li>
+                <li>Looking for: {match.looking_for}</li>
+                <li>Description: {match.description}</li>
+                <br /><br />
+              </ul>
+          )
+        })}
     </div>
   )
 }
