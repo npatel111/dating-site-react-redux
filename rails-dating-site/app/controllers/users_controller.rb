@@ -50,7 +50,7 @@ class UsersController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def user_params
       byebug
-      params.require(:user).permit(:id, :name, :age, :gender, :description, :looking_for)
+      params.require(:user).permit(:id, :name, :age, :gender, :description, :looking_for, :street, :city, :state)
     end
 
 

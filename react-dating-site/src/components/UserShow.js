@@ -7,14 +7,14 @@ import {Link} from 'react-router';
 
 
 class UserShow extends React.Component {
-  // debugger
+  debugger
   constructor(props) {
     super(props)
     this.handleEdit = this.handleEdit.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
     this.showMatches = this.showMatches.bind(this)
-    this.state = {matchesVisible: false, matches: null, editFormVisible: false, userInfo: {name: this.props.user.name, age: this.props.user.age, gender: this.props.user.gender, looking_for: this.props.user.looking_for, description: this.props.user.description}}
+    this.state = {matchesVisible: false, matches: [], editFormVisible: false, userInfo: {name: this.props.user.name, age: this.props.user.age, gender: this.props.user.gender, looking_for: this.props.user.looking_for, description: this.props.user.description, street: this.props.user.street, city: this.props.user.city, state: this.props.user.state}}
   }
 
 
@@ -35,13 +35,13 @@ class UserShow extends React.Component {
   handleSubmit(event) {
     // debugger
     event.preventDefault()
-    this.props.actions.editUser(this.props.user.id, this.state.userInfo.name, this.state.userInfo.age, this.state.userInfo.gender, this.state.userInfo.looking_for, this.state.userInfo.description)
+    this.props.actions.editUser(this.props.user.id, this.state.userInfo.name, this.state.userInfo.age, this.state.userInfo.gender, this.state.userInfo.looking_for, this.state.userInfo.description, this.state.userInfo.street, this.state.userInfo.city, this.state.userInfo.state)
     this.setState({editFormVisible: !this.state.editFormVisible})
   }
 
   handleDelete(event) {
     // debugger
-    this.props.actions.deleteUser(this.props.user.id, this.state.userInfo.name, this.state.userInfo.age, this.state.userInfo.gender, this.state.userInfo.looking_for, this.state.userInfo.description)
+    this.props.actions.deleteUser(this.props.user.id, this.state.userInfo.name, this.state.userInfo.age, this.state.userInfo.gender, this.state.userInfo.looking_for, this.state.userInfo.description, this.state.userInfo.street, this.state.userInfo.city, this.state.userInfo.state)
   }
 
   showMatches() {
@@ -64,6 +64,9 @@ class UserShow extends React.Component {
           <p>Gender: {this.props.user.gender}</p>
           <p>Description: {this.props.user.description}</p>
           <p>Looking for: {this.props.user.looking_for}</p>
+          <p>Street: {this.props.user.street}</p>
+          <p>City: {this.props.user.city}</p>
+          <p>State: {this.props.user.state}</p>
           {this.state.matchesVisible ? <UserMatch usermatches={this.state.matches} /> : null}
 
         </Link>
@@ -78,12 +81,19 @@ class UserShow extends React.Component {
             <label>Age: </label>
             <input type="text" value={this.state.userInfo.age} onChange={this.handleChange.bind(this, "age")}/><br />
             <label>Gender: </label>
-            <input type="text" value={this.state.userInfo.gender} onChange={this.handleChange.bind(this, "gender")}/><br />
+            Male <input type="radio" value="M" checked={this.state.userInfo.gender === "M"} onChange={this.handleChange.bind(this, "gender")} />
+            Female <input type="radio" value="F" checked={this.state.userInfo.gender === "F"} onChange={this.handleChange.bind(this, "gender")}/><br />
             <label>Looking for:</label><br />
-            Male <input type="radio" value="M" checked={this.state.userInfo.looking_for === "Male"} onChange={this.handleChange.bind(this, "looking_for")} />
-            Female <input type="radio" value="F" checked={this.state.userInfo.looking_for === "Female"} onChange={this.handleChange.bind(this, "looking_for")}/><br />
+            Male <input type="radio" value="M" checked={this.state.userInfo.looking_for === "M"} onChange={this.handleChange.bind(this, "looking_for")} />
+            Female <input type="radio" value="F" checked={this.state.userInfo.looking_for === "F"} onChange={this.handleChange.bind(this, "looking_for")}/><br />
             <label>Description: </label>
             <input type="text" value={this.state.userInfo.description} onChange={this.handleChange.bind(this, "description")}/><br />
+            <label>Street Address: </label>
+            <input type="text" value={this.state.userInfo.street} onChange={this.handleChange.bind(this, "street")}/><br />
+            <label>City: </label>
+            <input type="text" value={this.state.userInfo.city} onChange={this.handleChange.bind(this, "city")}/><br />
+            <label>State: </label>
+            <input type="text" value={this.state.userInfo.state} onChange={this.handleChange.bind(this, "state")}/><br />
             <input type="submit" />
           </form> : null}
       </div>

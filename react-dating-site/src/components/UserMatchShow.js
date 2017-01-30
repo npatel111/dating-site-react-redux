@@ -6,9 +6,9 @@ export default function UserMatch(props) {
     <div>
       <p>Matched With: </p>
       <div>{props.usermatches.length > 0 ? null : "No matches"}</div>
-        {props.usermatches.map((match) => {
+        {props.usermatches.map((match, i) => {
           return (
-              <ul>
+              <ul key={i}>
                 <li>Name: {match.name}</li>
                 <li>Age: {match.age}</li>
                 <li>Gender: {match.gender}</li>
