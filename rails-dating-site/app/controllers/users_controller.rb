@@ -11,12 +11,30 @@ class UsersController < ApplicationController
     render json: @user
   end
 
+  def get_user_matches
+    # byebug
+    # for each match, figure out distance from user. Sort by distance
+    viable_matches = Match.all.select {|person| person.id != @user.id && person.looking_for == @user.gender && person.gender == @user.looking_for}
+    matches_with_distance = {}
+    viable_matches.each do |match|
+      distance = Adapter.new.get_distance(@user, match)
+      # byebug
+      matches_with_distance[match] = distance
+      # byebug
+    end
+    return matches_with_distance.sort_by {|key, value| value}.to_h.keys
+    # byebug
+
+  end
+
   def create
-    byebug
     @user = User.new(user_params)
     if @user.save
       @match = Match.create(user_params)
-      @user.matches = Match.all.select {|person| person.id != @user.id && person.looking_for == @user.gender && person.gender == @user.looking_for}
+      # get matches here?
+      # byebug
+      @user.matches = self.get_user_matches
+      # byebug
       render json: @user, status: :created, location: @user
     else
       render json: @song.errors, status: :unprocessable_entity
@@ -49,7 +67,7 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      byebug
+      # byebug
       params.require(:user).permit(:id, :name, :age, :gender, :description, :looking_for, :street, :city, :state)
     end
 
