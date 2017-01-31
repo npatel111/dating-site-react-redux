@@ -17,11 +17,8 @@ store.dispatch(actions.getMatches())
 ReactDOM.render(
   (<Provider store={store} >
       <Router history={browserHistory}>
-        <Route path="/" component={App} >
-          <Route path='/users' component={UserList} >
-            <Route path="/users/:id" component={UserDetail} />
-          </Route>
-        </Route>
+        <Route path="/" component={App} />
+        <Route path="/users/:id" component={UserDetail} />
       </Router>
   </Provider>),
   document.getElementById('container')

@@ -13,7 +13,6 @@ class UsersController < ApplicationController
 
   def get_user_matches
     # byebug
-    # for each match, figure out distance from user. Sort by distance
     viable_matches = Match.all.select {|person| person.id != @user.id && person.looking_for == @user.gender && person.gender == @user.looking_for}
     matches_with_distance = {}
     viable_matches.each do |match|
@@ -24,14 +23,12 @@ class UsersController < ApplicationController
     end
     return matches_with_distance.sort_by {|key, value| value}.to_h.keys
     # byebug
-
   end
 
   def create
     @user = User.new(user_params)
     if @user.save
       @match = Match.create(user_params)
-      # get matches here?
       # byebug
       @user.matches = self.get_user_matches
       # byebug
