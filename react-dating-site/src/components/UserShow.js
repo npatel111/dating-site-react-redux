@@ -4,6 +4,11 @@ import UserDetail from './UserDetail'
 import UserMatch from './UserMatchShow'
 import {Link} from 'react-router';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
+import request from 'superagent'
+import Dropzone from 'react-dropzone'
+
+const CLOUDINARY_UPLOAD_PRESET = 'itsanzfy';
+const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/npatel/image/upload'
 
 class UserShow extends React.Component {
   debugger
@@ -14,7 +19,32 @@ class UserShow extends React.Component {
     this.handleDelete = this.handleDelete.bind(this)
     this.showMatches = this.showMatches.bind(this)
     this.handleShowUserDetail = this.handleShowUserDetail.bind(this)
-    this.state = {detailsVisible: false, matchesVisible: false, matches: [], editFormVisible: false, userInfo: {name: this.props.user.name, age: this.props.user.age, gender: this.props.user.gender, looking_for: this.props.user.looking_for, description: this.props.user.description, street: this.props.user.street, city: this.props.user.city, state: this.props.user.state}}
+    this.state = {uploadedFileCloudinaryUrl: "", detailsVisible: false, matchesVisible: false, matches: [], editFormVisible: false, userInfo: {name: this.props.user.name, age: this.props.user.age, gender: this.props.user.gender, looking_for: this.props.user.looking_for, description: this.props.user.description, street: this.props.user.street, city: this.props.user.city, state: this.props.user.state, image_url: this.props.user.image_url}}
+  }
+
+  onImageDrop(files) {
+    this.setState({
+      uploadedFile: files[0]
+    })
+    this.handleImageUpload(files[0])
+  }
+
+  handleImageUpload(file) {
+    let upload = request.post(CLOUDINARY_UPLOAD_URL)
+                        .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+                        .field('file', file);
+
+    upload.end((err, response) => {
+      if (err) {
+        console.error(err);
+      }
+
+      if (response.body.secure_url !== '') {
+        this.setState({
+          uploadedFileCloudinaryUrl: response.body.secure_url
+        });
+      }
+    });
   }
 
   handleShowUserDetail(event) {
@@ -42,13 +72,13 @@ class UserShow extends React.Component {
   handleSubmit(event) {
     // debugger
     event.preventDefault()
-    this.props.actions.editUser(this.props.user.id, this.state.userInfo.name, this.state.userInfo.age, this.state.userInfo.gender, this.state.userInfo.looking_for, this.state.userInfo.description, this.state.userInfo.street, this.state.userInfo.city, this.state.userInfo.state)
+    this.props.actions.editUser(this.props.user.id, this.state.userInfo.name, this.state.userInfo.age, this.state.userInfo.gender, this.state.userInfo.looking_for, this.state.userInfo.description, this.state.userInfo.street, this.state.userInfo.city, this.state.userInfo.state, this.state.userInfo.image_url)
     this.setState({editFormVisible: !this.state.editFormVisible})
   }
 
   handleDelete(event) {
     // debugger
-    this.props.actions.deleteUser(this.props.user.id, this.state.userInfo.name, this.state.userInfo.age, this.state.userInfo.gender, this.state.userInfo.looking_for, this.state.userInfo.description, this.state.userInfo.street, this.state.userInfo.city, this.state.userInfo.state)
+    this.props.actions.deleteUser(this.props.user.id, this.state.userInfo.name, this.state.userInfo.age, this.state.userInfo.gender, this.state.userInfo.looking_for, this.state.userInfo.description, this.state.userInfo.street, this.state.userInfo.city, this.state.userInfo.state, this.state.userInfo.image_url)
   }
 
   showMatches() {
@@ -63,7 +93,7 @@ class UserShow extends React.Component {
   }
 
   render() {
-    debugger
+    // debugger
 
     return(
       <div>
@@ -102,6 +132,20 @@ class UserShow extends React.Component {
             <input type="text" value={this.state.userInfo.city} onChange={this.handleChange.bind(this, "city")}/><br />
             <label>State: </label>
             <input type="text" value={this.state.userInfo.state} onChange={this.handleChange.bind(this, "state")}/><br />
+            <Dropzone
+              multiple={false}
+              accept="image/*"
+              onDrop={this.onImageDrop.bind(this)}>
+              <p>Drop an image or click to select a file to upload, or leave blank if you are happy with your pic.</p>
+            </Dropzone>
+            <div>
+            {this.state.uploadedFileCloudinaryUrl === '' ? null :
+              <div>
+                <p>{this.state.uploadedFile.name}</p>
+                <img src={this.state.uploadedFileCloudinaryUrl} />
+              </div>}
+            </div>
+
             <input type="submit" />
           </form> : null}
       </div>

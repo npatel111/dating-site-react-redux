@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 export default function UserDetail(props) {
   // debugger
-  
+
 
   return (
       <ul>
@@ -14,6 +14,7 @@ export default function UserDetail(props) {
         <p>Street: {props.location.state.user.street}</p>
         <p>City: {props.location.state.user.city}</p>
         <p>State: {props.location.state.user.state}</p>
+        <img src={props.location.state.user.image_url} />
       </ul>
 
   )

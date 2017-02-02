@@ -37,13 +37,13 @@ export function getUserMatches(id) {
   }
 }
 
-export function addUser(name, age, gender, looking_for, description, street, city, state) {
+export function addUser(name, age, gender, looking_for, description, street, city, state, image_url) {
   debugger
   return function(dispatch) {
     $.ajax({
       url: 'http://localhost:3000/users',
       type: "POST",
-      data: {user: {name: name, age: age, gender: gender, looking_for: looking_for, description: description, street: street, city: city, state: state}}
+      data: {user: {name: name, age: age, gender: gender, looking_for: looking_for, description: description, street: street, city: city, state: state, image_url: image_url}}
     }).done(function(resp){
       debugger
       return dispatch({
@@ -70,16 +70,16 @@ export function editUser(id, name, age, gender, looking_for, description, street
   }
 }
 
-export function deleteUser(id, name, age, gender, looking_for, description, street, city, state) {
+export function deleteUser(id, name, age, gender, looking_for, description, street, city, state, image_url) {
   return function(dispatch) {
     $.ajax({
       url: `http://localhost:3000/users/${id}`,
       type: "DELETE",
-      data: {user: {id: id, name: name, age: age, gender: gender, looking_for: looking_for, description: description, street: street, city: city, state:state}}
+      data: {user: {id: id, name: name, age: age, gender: gender, looking_for: looking_for, description: description, street: street, city: city, state:state, image_url: image_url}}
     }).done(function(resp){
       return dispatch({
          type: "DELETE_USER",
-         payload: {id: id, name: name, age: age, gender: gender, looking_for: looking_for, description: description, street: street, city: city, state: state}
+         payload: {id: id, name: name, age: age, gender: gender, looking_for: looking_for, description: description, street: street, city: city, state: state, image_url: image_url}
        })
   })
   }
