@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-// import {connect} from 'react-redux'
+import Dropzone from 'react-dropzone'
 import * as actions from '../actions/getUsers'
-// import { bindActionCreators } from 'redux'
-// import InventoryList from './InventoryList'
+import request from 'superagent'
+
+const CLOUDINARY_UPLOAD_PRESET = 'itsanzfy';
+const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/npatel/image/upload'
 
 
 
@@ -10,13 +12,38 @@ class NewUser extends Component {
   // debugger
   constructor(props) {
     super(props)
-    this.state = {name: "", age: "", gender: "", looking_for: "", description: "", street: "", city: "", state: ""}
+    this.state = {uploadedFileCloudinaryUrl: "", name: "", age: "", gender: "", looking_for: "", description: "", street: "", city: "", state: ""}
     this.handleClick = this.handleClick.bind(this)
     // this.handleChange = this.handleChange.bind(this)
   }
 
+  onImageDrop(files) {
+    this.setState({
+      uploadedFile: files[0]
+    })
+    this.handleImageUpload(files[0])
+  }
+
+  handleImageUpload(file) {
+    let upload = request.post(CLOUDINARY_UPLOAD_URL)
+                        .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+                        .field('file', file);
+
+    upload.end((err, response) => {
+      if (err) {
+        console.error(err);
+      }
+
+      if (response.body.secure_url !== '') {
+        this.setState({
+          uploadedFileCloudinaryUrl: response.body.secure_url
+        });
+      }
+    });
+  }
+
   handleClick(event) {
-    // debugger
+    debugger
     event.preventDefault()
     this.props.actions.addUser(this.state.name, this.state.age, this.state.gender, this.state.looking_for, this.state.description, this.state.street, this.state.city, this.state.state)
     this.setState({name: "", age: "", gender: "", description: "", looking_for: "", street: "", city: "", state: ""})
@@ -31,7 +58,7 @@ class NewUser extends Component {
 
   render() {
     return (
-      <form  onSubmit={this.handleClick} >
+      <form onSubmit={this.handleClick} >
         Add new user: <br />
         <label>Pick a Username:</label>
         <input type="text" value={this.state.name} onChange={this.handleChange.bind(this, "name")} /><br />
@@ -51,6 +78,20 @@ class NewUser extends Component {
         <input type="text" value={this.state.city} onChange={this.handleChange.bind(this, "city")}/><br />
         <label>State: </label>
         <input type="text" value={this.state.state} onChange={this.handleChange.bind(this, "state")}/><br />
+        <Dropzone
+          multiple={false}
+          accept="image/*"
+          onDrop={this.onImageDrop.bind(this)}>
+          <p>Drop an image or click to select a file to upload.</p>
+        </Dropzone>
+        <div>
+        {this.state.uploadedFileCloudinaryUrl === '' ? null :
+          <div>
+            <p>{this.state.uploadedFile.name}</p>
+            <img src={this.state.uploadedFileCloudinaryUrl} />
+          </div>}
+        </div>
+
         <input type="submit" />
       </form>
     );

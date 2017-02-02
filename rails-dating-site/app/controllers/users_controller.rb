@@ -28,6 +28,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      # UserMatch.new(distance: )
       @match = Match.create(user_params)
       # byebug
       @user.matches = self.get_user_matches

@@ -24,13 +24,10 @@ class UserShow extends React.Component {
       pathname: `/users/${this.props.user.id}`,
       state: {user: this.props.user}
     })
-
-
   }
 
 
   handleEdit(event) {
-    // event.preventDefault()
     this.setState({editFormVisible: !this.state.editFormVisible})
   }
 
@@ -66,6 +63,7 @@ class UserShow extends React.Component {
   }
 
   render() {
+    debugger
 
     return(
       <div>
@@ -74,9 +72,7 @@ class UserShow extends React.Component {
           <p>Gender: {this.props.user.gender}</p>
           <p>Description: {this.props.user.description}</p>
           <p>Looking for: {this.props.user.looking_for}</p>
-          <p>Street: {this.props.user.street}</p>
-          <p>City: {this.props.user.city}</p>
-          <p>State: {this.props.user.state}</p>
+          <img src={this.props.user.image_url} />
           {this.state.matchesVisible ? <UserMatch usermatches={this.state.matches} /> : null}
           {this.state.detailsVisible ? <UserDetail user={this.props.user} /> : null}
 

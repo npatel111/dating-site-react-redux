@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 
 export default function UserDetail(props) {
-  debugger
+  // debugger
+  
+
   return (
       <ul>
-        hi how are you?
         <p>Username: {props.location.state.user.name}</p>
         <p>Age: {props.location.state.user.age}</p>
         <p>Gender: {props.location.state.user.gender}</p>
@@ -14,5 +15,6 @@ export default function UserDetail(props) {
         <p>City: {props.location.state.user.city}</p>
         <p>State: {props.location.state.user.state}</p>
       </ul>
+
   )
 }
