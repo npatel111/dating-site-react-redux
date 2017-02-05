@@ -35,12 +35,7 @@ class UsersController < ApplicationController
         UserMatch.create(user_id: @user.id, match_id: match.id, distance: distance)
       end
       byebug
-      #for all possible matches:
-      # UserMatch.new(user_id: @user.id, match_id: match.id, distance: what we get from adapter)
       @match = Match.create(user_params)
-      # byebug
-      # @user.matches = self.get_user_matches
-      # byebug
       render json: @user, status: :created, location: @user
     else
       render json: @song.errors, status: :unprocessable_entity
@@ -51,7 +46,9 @@ class UsersController < ApplicationController
   def update
     # byebug
     @user = User.find(params[:id])
+    @match = Match.find(params[:id])
     if @user.update(user_params)
+      @match.update(user_params)
       render json: @user
     else
       render json: @user.errors, status: :unprocessable_entity
