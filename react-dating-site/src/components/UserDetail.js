@@ -4,13 +4,13 @@ import UserMatch from './UserMatchShow'
 
 
 class UserDetail extends Component {
-  debugger
+
   constructor(props) {
     super(props)
     this.state = { usermatches: [], matchesVisible: false}
     // this.showMatchesForUser = this.showMatchesForUser.bind(this)
   }
-  debugger
+
   // showMatchesForUser() {
   //   debugger
   //   this.props.actions.getMatchesForUser(this.props.user.id)
@@ -22,7 +22,6 @@ class UserDetail extends Component {
 
 
 render() {
-  debugger
   return (
       <ul>
         <p>Username: {this.props.location.state.user.name}</p>

@@ -11,7 +11,6 @@ const CLOUDINARY_UPLOAD_PRESET = 'itsanzfy';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/npatel/image/upload'
 
 class UserShow extends React.Component {
-  debugger
   constructor(props) {
     super(props)
     this.handleEdit = this.handleEdit.bind(this)
@@ -48,7 +47,6 @@ class UserShow extends React.Component {
   }
 
   handleShowUserDetail(event) {
-    debugger
     this.setState({detailsVisible: !this.state.detailsVisible})
     browserHistory.push({
       pathname: `/users/${this.props.user.id}`,
@@ -82,15 +80,14 @@ class UserShow extends React.Component {
   }
 
   showMatches() {
-    debugger
+
     let id = this.props.user.id
+    // this.props.actions.getMatches()
     this.props.actions.getMatchesForUser(id)
     this.setState({ matches: this.props.matches, matchesVisible: !this.state.matchesVisible})
-    debugger
   }
 
   render() {
-    debugger
 
     return(
       <div>

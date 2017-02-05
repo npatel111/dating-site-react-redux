@@ -15,7 +15,6 @@ class UserMatchesController < ApplicationController
 
   # GET /user_matches/1
   def show
-    # debugger
     @id = params[:id]
     @matches_for_user = UserMatch.where("user_id = ?", @id)
     render json: @matches_for_user
@@ -51,15 +50,12 @@ class UserMatchesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user_match
       # should we find by user_id?
-      # debugger
       # UserMatch.where("user_id = ?", 4)
       @user_match = UserMatch.find_by(user_id: params[:id])
-      # debugger
     end
 
     # Only allow a trusted parameter "white list" through.
     def user_match_params
-      # debugger
       params.require(:user_match).permit(:user_id, :match_id, :distance)
     end
 end

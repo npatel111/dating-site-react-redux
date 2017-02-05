@@ -7,12 +7,10 @@ const CLOUDINARY_UPLOAD_PRESET = 'itsanzfy';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/npatel/image/upload'
 
 class NewUser extends Component {
-  // debugger
   constructor(props) {
     super(props)
     this.state = {uploadedFileCloudinaryUrl: "", name: "", age: "", gender: "", looking_for: "", description: "", street: "", city: "", state: ""}
     this.handleClick = this.handleClick.bind(this)
-    // this.handleChange = this.handleChange.bind(this)
   }
 
   onImageDrop(files) {
@@ -41,14 +39,13 @@ class NewUser extends Component {
   }
 
   handleClick(event) {
-    // debugger
     event.preventDefault()
+    debugger
     this.props.actions.addUser(this.state.name, this.state.age, this.state.gender, this.state.looking_for, this.state.description, this.state.street, this.state.city, this.state.state, this.state.uploadedFileCloudinaryUrl)
     this.setState({name: "", age: "", gender: "", description: "", looking_for: "", street: "", city: "", state: "", uploadedFileCloudinaryUrl: ""})
   }
 
   handleChange(propertyName, event) {
-    // debugger
     var obj = {}
     obj[propertyName] = event.target.value
     this.setState(obj)

@@ -24,7 +24,7 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {users: state.users, matches: state.matches}
-  debugger
+
 
 }
 

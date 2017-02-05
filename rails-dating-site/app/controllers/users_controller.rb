@@ -27,15 +27,20 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      byebug
+      @match = Match.create(user_params)
       usermatches = @user.find_matches
       usermatches.each do |match|
         distance = Adapter.new.get_distance(@user, match)
-        byebug
-        UserMatch.create(user_id: @user.id, match_id: match.id, distance: distance)
+        @usermatch = UserMatch.create(user_id: @user.id, match_id: match.id, distance: distance)
+        previous_users = User.where("id < ?", @usermatch.user_id)
+        previous_users.each do |previous_user|
+          if previous_user.is_match?(@user)
+            distance = Adapter.new.get_distance(previous_user, @user)
+            UserMatch.create(user_id: previous_user.id, match_id: @user.id, distance: distance)
+          end
+        end
+        # But even old user's matches should refresh when new user is added
       end
-      byebug
-      @match = Match.create(user_params)
       render json: @user, status: :created, location: @user
     else
       render json: @song.errors, status: :unprocessable_entity
@@ -58,7 +63,10 @@ class UsersController < ApplicationController
   # DELETE /users/1
   def destroy
     @user = User.find(params[:id])
+    @match = Match.find(params[:id])
     @user.destroy
+    @match.destroy
+
     #should this destroy that match as well?
   end
 

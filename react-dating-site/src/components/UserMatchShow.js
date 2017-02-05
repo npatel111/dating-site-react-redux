@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 
 export default function UserMatch(props) {
-  debugger
   return (
     <div>
       <p>Matched With: </p>

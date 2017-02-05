@@ -10,7 +10,7 @@ class Adapter
     uri = URI(url)
     response = JSON.parse(Net::HTTP.get(uri))
     return response["rows"][0]["elements"][0]["distance"]["value"] || "address not found"
-    byebug
+    
   end
 
 end
