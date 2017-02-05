@@ -1,5 +1,22 @@
 import $ from 'jquery';
 
+export function getMatchesForUser(id) {
+  debugger
+  return function(dispatch) {
+    $.ajax({
+      url: `http://localhost:3000/user_matches/${id}`,
+      type: "GET"
+    }).done(function(resp){
+      debugger
+      dispatch({
+         type: "GET_MATCHES_FOR_USER",
+         payload: resp
+       })
+  })
+  }
+}
+
+
 export function getUsers() {
   return function(dispatch) {
     $.ajax({
@@ -27,7 +44,7 @@ export function getMatches() {
 export function getUserMatches(id) {
   return function(dispatch) {
     $.ajax({
-      url: 'http://localhost:3000/matches',
+      url: `http://localhost:3000/matches/${id}`,
       type: "GET",
     }).done(function(data){
       debugger
@@ -53,6 +70,7 @@ export function addUser(name, age, gender, looking_for, description, street, cit
   })
   }
 }
+
 
 export function editUser(id, name, age, gender, looking_for, description, street, city, state) {
   return function(dispatch) {

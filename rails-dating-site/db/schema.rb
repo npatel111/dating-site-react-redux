@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170202205941) do
+ActiveRecord::Schema.define(version: 20170203190409) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20170202205941) do
   create_table "user_matches", force: :cascade do |t|
     t.integer "user_id"
     t.integer "match_id"
+    t.integer "distance"
   end
 
   create_table "users", force: :cascade do |t|

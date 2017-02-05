@@ -7,7 +7,7 @@ class UserList extends Component {
     super(props)
 
   }
-
+debugger
   render() {
     return (
       <ul className="list-group col-lg-6 col-lg-offset-3">

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
-// import getUsers from '../actions/getUsers'
-// import addUser from '../actions/addUser'
+
 import * as actions from '../actions/getUsers'
 import { bindActionCreators } from 'redux'
 import UserList from './UserList'
@@ -25,6 +24,8 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {users: state.users, matches: state.matches}
+  debugger
+
 }
 
 function mapDispatchToProps(dispatch) {

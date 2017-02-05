@@ -52,7 +52,7 @@ class UserShow extends React.Component {
     this.setState({detailsVisible: !this.state.detailsVisible})
     browserHistory.push({
       pathname: `/users/${this.props.user.id}`,
-      state: {user: this.props.user}
+      state: {user: this.props.user, actions: this.props.actions}
     })
   }
 
@@ -82,18 +82,15 @@ class UserShow extends React.Component {
   }
 
   showMatches() {
-    // debugger
+    debugger
     let id = this.props.user.id
-    let looking_for = this.props.user.looking_for
-    let gender = this.props.user.gender
-    let matches = this.props.matches.filter(function(match) {
-      return (match.id !== id && match.gender === looking_for && match.looking_for === gender)
-    })
-    this.setState({ matches: matches, matchesVisible: !this.state.matchesVisible})
+    this.props.actions.getMatchesForUser(id)
+    this.setState({ matches: this.props.matches, matchesVisible: !this.state.matchesVisible})
+    debugger
   }
 
   render() {
-    // debugger
+    debugger
 
     return(
       <div>
@@ -103,10 +100,7 @@ class UserShow extends React.Component {
           <p>Description: {this.props.user.description}</p>
           <p>Looking for: {this.props.user.looking_for}</p>
           <img src={this.props.user.image_url} />
-          {this.state.matchesVisible ? <UserMatch usermatches={this.state.matches} /> : null}
-          {this.state.detailsVisible ? <UserDetail user={this.props.user} /> : null}
-
-
+          {this.state.matchesVisible ? <UserMatch usermatches={this.props.matches} /> : null}
         <button onClick={this.handleEdit}>Edit User</button>
         <button onClick={this.handleDelete}>Delete User</button>
         <button onClick={this.showMatches}>Show Matches</button>
@@ -155,3 +149,4 @@ class UserShow extends React.Component {
 
 
 export default UserShow
+// {this.state.detailsVisible ? <UserDetail user={this.props.user} actions={this.props.actions} /> : null}

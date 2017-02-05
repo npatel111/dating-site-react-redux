@@ -19,7 +19,6 @@ class UsersController < ApplicationController
       distance = Adapter.new.get_distance(@user, match)
       # byebug
       matches_with_distance[match] = distance
-      # byebug
     end
     return matches_with_distance.sort_by {|key, value| value}.to_h.keys
     # byebug
@@ -28,10 +27,19 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      # UserMatch.new(distance: )
+      byebug
+      usermatches = @user.find_matches
+      usermatches.each do |match|
+        distance = Adapter.new.get_distance(@user, match)
+        byebug
+        UserMatch.create(user_id: @user.id, match_id: match.id, distance: distance)
+      end
+      byebug
+      #for all possible matches:
+      # UserMatch.new(user_id: @user.id, match_id: match.id, distance: what we get from adapter)
       @match = Match.create(user_params)
       # byebug
-      @user.matches = self.get_user_matches
+      # @user.matches = self.get_user_matches
       # byebug
       render json: @user, status: :created, location: @user
     else

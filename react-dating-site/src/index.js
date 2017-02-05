@@ -11,7 +11,7 @@ import UserDetail from '../src/components/UserDetail'
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 
 export const store = configureStore();
-store.dispatch(actions.getUsers())//got an error here
+store.dispatch(actions.getUsers())
 store.dispatch(actions.getMatches())
 
 ReactDOM.render(
