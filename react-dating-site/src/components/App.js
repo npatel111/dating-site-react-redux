@@ -7,13 +7,25 @@ import UserList from './UserList'
 import NewUser from './NewUser'
 import UserShow from './UserShow'
 class App extends Component {
+  constructor(props){
+    super(props)
+    this.state = {newUserFormVisible: false}
+    this.handleShow = this.handleShow.bind(this)
+  }
+
+  handleShow(event) {
+    event.preventDefault()
+    this.setState({newUserFormVisible: !this.state.newUserFormVisible})
+  }
+
   render() {
     return (
       <div className="App">
         <div className="App-header">
           <h2>Welcome to a dating site! Here are all the users</h2>
         </div>
-        <NewUser actions={this.props.actions} users={this.props.users}/><br />
+        <button onClick={this.handleShow} type="submit">Add User</button>
+        {this.state.newUserFormVisible ? <NewUser actions={this.props.actions} users={this.props.users}/> : null}
         <UserList matches={this.props.matches} getUsers={this.props.getUsers} users={this.props.users} actions={this.props.actions}/>
         {this.props.children}
       </div>
