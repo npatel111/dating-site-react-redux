@@ -6,6 +6,7 @@ import request from 'superagent'
 const CLOUDINARY_UPLOAD_PRESET = 'itsanzfy';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/npatel/image/upload'
 
+
 class NewUser extends Component {
   constructor(props) {
     super(props)

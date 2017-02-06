@@ -7,7 +7,6 @@ class User < ApplicationRecord
   end
 
   def is_match?(user)
-    debugger
     self.id != user.id && self.looking_for == user.gender && self.gender == user.looking_for
   end
 
