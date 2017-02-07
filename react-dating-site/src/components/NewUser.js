@@ -94,7 +94,7 @@ class NewUser extends Component {
       )} else {
         return null
       }
-    
+
   }
 }
 

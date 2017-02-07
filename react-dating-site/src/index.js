@@ -9,6 +9,7 @@ import UserList from '../src/components/UserShow'
 import UserDetail from '../src/components/UserDetail'
 
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
+// import './index.css';
 
 export const store = configureStore();
 store.dispatch(actions.getUsers())

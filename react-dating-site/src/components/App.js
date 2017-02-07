@@ -24,7 +24,7 @@ class App extends Component {
         <div className="App-header">
           <h2>Welcome to a dating site! Here are all the users</h2>
         </div>
-        <button onClick={this.handleShow} type="submit">Add User</button>
+        <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="add-user-button" onClick={this.handleShow} type="submit">Add User</button>
         {this.state.newUserFormVisible ? <NewUser actions={this.props.actions} users={this.props.users}/> : null}
         <UserList matches={this.props.matches} getUsers={this.props.getUsers} users={this.props.users} actions={this.props.actions}/>
         {this.props.children}
