@@ -11,14 +11,7 @@ class UserDetail extends Component {
     // this.showMatchesForUser = this.showMatchesForUser.bind(this)
   }
 
-  // showMatchesForUser() {
-  //   debugger
-  //   this.props.actions.getMatchesForUser(this.props.user.id)
-  //   return this.state.matches
-  //   debugger
-  //   // Have an action that queries usermatches table by a user, gets matches and distance for each match?
-  //
-  // }
+  
 
 
 render() {

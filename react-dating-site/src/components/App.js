@@ -20,10 +20,10 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="wrap">
         <div className="App-header">
-          <h2 className="header-text" >Want to find love? Too lazy to go out?</h2><br />
-          <h4 className="header-text" >We get it. We will show you only people who are close by.</h4>
+          <h1 className="header-text" id="header">Sit on your couch. Find love. </h1><br />
+          <h3 className="header-text">We get it. We will show you only people who are close by.</h3>
         </div>
         <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="add-user-button" onClick={this.handleShow} type="submit">Add User</button>
         {this.state.newUserFormVisible ? <NewUser actions={this.props.actions} users={this.props.users}/> : null}

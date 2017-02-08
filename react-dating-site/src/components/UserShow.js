@@ -60,22 +60,19 @@ class UserShow extends React.Component {
   }
 
   handleChange(propertyName, event) {
-    // debugger
     var obj = {}
     obj[propertyName] = event.target.value
     this.setState({userInfo: Object.assign({}, this.state.userInfo, obj)})
-    // debugger
   }
 
   handleSubmit(event) {
-    // debugger
+
     event.preventDefault()
     this.props.actions.editUser(this.props.user.id, this.state.userInfo.name, this.state.userInfo.age, this.state.userInfo.gender, this.state.userInfo.looking_for, this.state.userInfo.description, this.state.userInfo.street, this.state.userInfo.city, this.state.userInfo.state, this.state.userInfo.image_url)
     this.setState({editFormVisible: !this.state.editFormVisible})
   }
 
   handleDelete(event) {
-    // debugger
     this.props.actions.deleteUser(this.props.user.id, this.state.userInfo.name, this.state.userInfo.age, this.state.userInfo.gender, this.state.userInfo.looking_for, this.state.userInfo.description, this.state.userInfo.street, this.state.userInfo.city, this.state.userInfo.state, this.state.userInfo.image_url)
   }
 
@@ -90,9 +87,6 @@ class UserShow extends React.Component {
   render() {
     return(
       <div>
-
-      <div className="mdl-grid">
-        <div className="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-shadow--2dp">
           <figure className="mdl-card__media">
             <img src={this.props.user.image_url} alt="" />
           </figure>
@@ -107,10 +101,7 @@ class UserShow extends React.Component {
             <a className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onClick={this.handleEdit}>Edit User</a>
             <a className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onClick={this.handleDelete}>Delete User</a>
             <a className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onClick={this.showMatches}>Show Matches</a>
-
             <div className="mdl-layout-spacer"></div>
-          </div>
-        </div>
       </div>
         {this.state.matchesVisible ? <UserMatch usermatches={this.props.matches} /> : null}
         { this.state.editFormVisible ?
