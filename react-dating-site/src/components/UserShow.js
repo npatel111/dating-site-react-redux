@@ -88,20 +88,31 @@ class UserShow extends React.Component {
   }
 
   render() {
-
     return(
       <div>
-          <p>Username: {this.props.user.name}</p>
-          <p>Age: {this.props.user.age}</p>
-          <p>Gender: {this.props.user.gender}</p>
-          <p>Description: {this.props.user.description}</p>
-          <p>Looking for: {this.props.user.looking_for}</p>
-          <img src={this.props.user.image_url} />
-          {this.state.matchesVisible ? <UserMatch usermatches={this.props.matches} /> : null}
-        <button onClick={this.handleEdit}>Edit User</button>
-        <button onClick={this.handleDelete}>Delete User</button>
-        <button onClick={this.showMatches}>Show Matches</button>
-        <button onClick={this.handleShowUserDetail}>Show Details</button>
+
+      <div className="mdl-grid">
+        <div className="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-shadow--2dp">
+          <figure className="mdl-card__media">
+            <img src={this.props.user.image_url} alt="" />
+          </figure>
+          <div className="mdl-card__title">
+            <h2 className="mdl-card__title-text">{this.props.user.name}</h2>
+          </div>
+          <div className="mdl-card__supporting-text">
+            <p>Looking for: {this.props.user.looking_for}</p>
+          </div>
+          <div className="mdl-card__actions mdl-card--border">
+            <a className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onClick={this.handleShowUserDetail}>Show Details</a>
+            <a className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onClick={this.handleEdit}>Edit User</a>
+            <a className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onClick={this.handleDelete}>Delete User</a>
+            <a className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onClick={this.showMatches}>Show Matches</a>
+
+            <div className="mdl-layout-spacer"></div>
+          </div>
+        </div>
+      </div>
+        {this.state.matchesVisible ? <UserMatch usermatches={this.props.matches} /> : null}
         { this.state.editFormVisible ?
           <form onSubmit={this.handleSubmit} >
             Edit user: <br />
@@ -139,11 +150,10 @@ class UserShow extends React.Component {
 
             <input type="submit" />
           </form> : null}
-      </div>
+        </div>
     )
   }
 }
 
 
 export default UserShow
-// {this.state.detailsVisible ? <UserDetail user={this.props.user} actions={this.props.actions} /> : null}

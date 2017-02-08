@@ -9,10 +9,10 @@ class UserList extends Component {
   }
   render() {
     return (
-      <ul className="list-group col-lg-6 col-lg-offset-3">
+      <ul >
         {this.props.users.map((user, i) => {
           return (
-              <li key={i} className="list-group-item">
+              <li key={i} >
                   <UserShow users={this.props.users} user={user} matches={this.props.matches} actions={this.props.actions}/>
               </li>
           )
