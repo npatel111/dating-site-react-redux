@@ -3,7 +3,7 @@ import Dropzone from 'react-dropzone'
 import * as actions from '../actions/getUsers'
 import request from 'superagent'
 
-const CLOUDINARY_UPLOAD_PRESET = 'itsanzfy';
+const CLOUDINARY_UPLOAD_PRESET = 'itqx0owh';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/npatel/image/upload'
 
 
@@ -25,7 +25,6 @@ class NewUser extends Component {
     let upload = request.post(CLOUDINARY_UPLOAD_URL)
                         .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
                         .field('file', file);
-
     upload.end((err, response) => {
       if (err) {
         console.error(err);
@@ -42,7 +41,7 @@ class NewUser extends Component {
   handleClick(event) {
 
     event.preventDefault()
-    
+
     this.props.actions.addUser(this.state.name, this.state.age, this.state.gender, this.state.looking_for, this.state.description, this.state.street, this.state.city, this.state.state, this.state.uploadedFileCloudinaryUrl)
     this.setState({visible: !this.state.visible, name: "", age: "", gender: "", description: "", looking_for: "", street: "", city: "", state: "", uploadedFileCloudinaryUrl: ""})
   }
