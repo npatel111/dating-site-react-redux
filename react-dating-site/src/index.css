@@ -39,10 +39,35 @@ li {
   color: white;
 }
 
+label {
+  color: black;
+}
+
+#dropzone {
+  border: dashed 100px red;
+  width: 500px;
+}
+
+/*.mdl-card-wide mdl-shadow--6dp {
+  width: 20em;
+}*/
 .mdl-card__media {
     margin: 0;
 }
 
 .mdl-card__media > img {
   max-width: 100%;
+}
+
+.mdl-layout {
+	align-items: center;
+  justify-content: center;
+}
+.mdl-layout__content {
+	padding: 2em;
+	flex: none;
+}
+
+.mdl-card__supporting-text {
+  margin: 0 auto;
 }
