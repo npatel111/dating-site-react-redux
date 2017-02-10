@@ -68,6 +68,10 @@ label {
 	flex: none;
 }
 
+.grey-text {
+  color: rgb(189, 189, 189)
+}
+
 .mdl-card__supporting-text {
   margin: 0 auto;
 }

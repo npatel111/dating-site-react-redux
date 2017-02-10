@@ -74,12 +74,12 @@ class NewUser extends Component {
                         <input className="mdl-textfield__input" type="text" value={this.state.age} onChange={this.handleChange.bind(this, "age")}/><br />
                       </div>
                       <div className="mdl-textfield mdl-js-textfield">
-                        <label className="mdl-radio__label">Gender: </label><br />
+                        <label className="mdl-radio__label grey-text">Gender: </label><br />
                         <span className="mdl-radio__label">Male</span> <input className="mdl-radio__input" type="radio" value="M" checked={this.state.gender === "M"} onChange={this.handleChange.bind(this, "gender")} />
                         <span className="mdl-radio__label">Female</span> <input className="mdl-radio__input" type="radio" value="F" checked={this.state.gender === "F"} onChange={this.handleChange.bind(this, "gender")}/><br />
                       </div>
                       <div className="mdl-textfield mdl-js-textfield">
-                        <label className="mdl-radio__label">Looking for:</label><br />
+                        <label className="mdl-radio__label grey-text">Looking for:</label><br />
                         <span className="mdl-radio__label">Male</span> <input className="mdl-radio__input" type="radio" value="M" checked={this.state.looking_for === "M"} onChange={this.handleChange.bind(this, "looking_for")} />
                         <span className="mdl-radio__label">Female</span> <input className="mdl-radio__input" type="radio" value="F" checked={this.state.looking_for === "F"} onChange={this.handleChange.bind(this, "looking_for")}/><br />
                       </div>
@@ -105,7 +105,7 @@ class NewUser extends Component {
                         multiple={false}
                         accept="image/*"
                         onDrop={this.onImageDrop.bind(this)}>
-                        <label>Drop an image or click to select a file to upload.</label>
+                        <label className="grey-text">Drop an image or click to select a file to upload.</label>
                       </Dropzone >
 
                     <div>
