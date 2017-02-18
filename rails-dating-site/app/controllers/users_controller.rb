@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
   skip_before_action :verify_authenticity_token
+  skip_before_action :authenticate#, :only => [:index]
+  # above line removed means you have to authenticate everything
+
 
   def index
     @users = User.all

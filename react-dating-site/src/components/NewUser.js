@@ -39,9 +39,7 @@ class NewUser extends Component {
   }
 
   handleClick(event) {
-
     event.preventDefault()
-
     this.props.actions.addUser(this.state.name, this.state.age, this.state.gender, this.state.looking_for, this.state.description, this.state.street, this.state.city, this.state.state, this.state.uploadedFileCloudinaryUrl)
     this.setState({visible: !this.state.visible, name: "", age: "", gender: "", description: "", looking_for: "", street: "", city: "", state: "", uploadedFileCloudinaryUrl: ""})
   }
