@@ -1,8 +1,7 @@
 import React, {PropTypes} from 'react';
-import TextInput from './common/TextInput';
+import TextInput from './TextInput';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import * as sessionActions from '../actions/sessionActions';
 
 class LogInPage extends React.Component {
   constructor(props) {
@@ -27,6 +26,7 @@ class LogInPage extends React.Component {
   render() {
     return (
       < div>
+        <p>Log In</p>
         < form>
           < TextInput
             name="email"
@@ -45,15 +45,12 @@ class LogInPage extends React.Component {
             type="submit"
             className="btn btn-primary"
             onClick={this.onSave}/>
+        </form>
+      </div>
 
 
   );
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(sessionActions, dispatch)
-  };
-}
-export default connect(null, mapDispatchToProps)(LogInPage);
+export default LogInPage

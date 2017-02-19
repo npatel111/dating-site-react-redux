@@ -1,8 +1,13 @@
 class SessionsController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   skip_before_action :authenticate
+  def new
+  end
 
   def create
-    user = User.find_by(email: auth_params[:email])
+    byebug
+    user = User.find_by(name: auth_params[:name])
     if user.authenticate(auth_params[:password])
       jwt = Auth.issue({user: user.id})
       render json: {jwt: jwt}
@@ -11,10 +16,10 @@ class SessionsController < ApplicationController
   end
 
   def new
-  end  
+  end
 
   private
   def auth_params
-    params.require(:auth).permit(:email, :password)
+    params.require(:auth).permit(:name, :password)
   end
 end

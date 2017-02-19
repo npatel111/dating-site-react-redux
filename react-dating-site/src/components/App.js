@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux'
 import UserList from './UserList'
 import NewUser from './NewUser'
 import UserShow from './UserShow'
+import LogInPage from './LogInPage'
 class App extends Component {
   constructor(props){
     super(props)
@@ -24,6 +25,7 @@ class App extends Component {
         <div className="App-header">
           <h1 className="header-text" id="header">Sit on your couch. Find love. </h1><br />
           <h3 className="header-text" id="subheader">We get it. We will show you only people who are close by.</h3>
+          <LogInPage actions={this.props.actions}/>
         </div>
         <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="add-user-button" onClick={this.handleShow} type="submit">Add User</button>
         {this.state.newUserFormVisible ? <NewUser actions={this.props.actions} users={this.props.users}/> : null}
