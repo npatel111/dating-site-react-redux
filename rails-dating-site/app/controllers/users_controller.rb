@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    byebug
+    # byebug
     @user = User.new(user_params)
     if @user.save
       @match = Match.create(match_params)

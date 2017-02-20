@@ -41,10 +41,11 @@ class App extends Component {
           <h3 className="header-text" id="subheader">We get it. We will show you only people who are close by.</h3>
         </div>
         <p>{localStorage.token ? "Logged in" : "Logged out"}</p>
-        <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="add-user-button" onClick={this.handleShowNewUser} type="submit">Add User</button>
-        <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="login-button" onClick={this.handleShowLogin} type="submit">LOG IN</button>
-        <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="logout-button" onClick={this.handleLogout} type="submit">LOG OUT</button>
-        {this.state.loginFormVisible ? <LogInPage actions={this.props.actions} /> : null}
+        {localStorage.token ? <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="logout-button" onClick={this.handleLogout} type="submit">LOG OUT</button> : <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="login-button" onClick={this.handleShowLogin} type="submit">LOG IN</button> }
+
+        {!localStorage.token ? <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="add-user-button" onClick={this.handleShowNewUser} type="submit">Add User</button> : null }
+
+        {this.state.loginFormVisible && !localStorage.token? <LogInPage actions={this.props.actions} /> : null}
         {this.state.newUserFormVisible ? <NewUser actions={this.props.actions} users={this.props.users}/> : null}
         <UserList matches={this.props.matches} getUsers={this.props.getUsers} users={this.props.users} actions={this.props.actions}/>
         {this.props.children}
