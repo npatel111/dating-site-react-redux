@@ -4,9 +4,10 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
 class LogInPage extends React.Component {
+  // debugger
   constructor(props) {
     super(props);
-    this.state = {credentials: {email: '', password: ''}}
+    this.state = {credentials: {name: '', password: ''}}
     this.onChange = this.onChange.bind(this);
     this.onSave = this.onSave.bind(this);
   }
@@ -24,14 +25,15 @@ class LogInPage extends React.Component {
   }
 
   render() {
+    // debugger
     return (
       < div>
         <p>Log In</p>
         < form>
           < TextInput
-            name="email"
-            label="email"
-            value={this.state.credentials.email}
+            name="name"
+            label="name"
+            value={this.state.credentials.name}
             onChange={this.onChange}/>
 
           < TextInput

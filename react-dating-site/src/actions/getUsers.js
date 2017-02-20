@@ -1,20 +1,49 @@
 import $ from 'jquery';
 import sessionApi from '../api/SessionApi'
+import { browserHistory } from 'react-router'
 
-export function loginSuccess() {
-  return {type: "LOG_IN_SUCCESS"}
+
+export function logInUser(credentials){
+  // from other app
+  debugger
+    return function(dispatch){
+      $.ajax({
+        url: 'http://localhost:3000/login',
+        type: "POST",
+        data: { auth: { name: credentials.name, password: credentials.password } },
+        dataType: "json",
+      }).done(function(response){
+        debugger
+        if(response.errors){
+          alert(response.errors)
+          dispatch({type: "FAILED_LOGIN", payload: response})
+        }
+        else{
+          debugger
+          localStorage.setItem('token', response.jwt)
+          browserHistory.push('/')
+          dispatch({type: "LOG_IN_SUCCESS", payload: response})
+        }
+
+      })
+    }
 }
 
-export function logInUser(credentials) {
-  return function(dispatch) {
-    return sessionApi.login(credentials).then(response => {
-      sessionStorage.setItem('jwt', response.jwt);
-      dispatch(loginSuccess());
-    }).catch(error => {
-      throw(error);
-    });
-  };
-}
+
+// export function loginSuccess() {
+//   return {type: "LOG_IN_SUCCESS"}
+// }
+//
+// export function logInUser(credentials) {
+//   return function(dispatch) {
+//     return sessionApi.login(credentials).then(response => {
+//       sessionStorage.setItem('jwt', response.jwt);
+//       dispatch(loginSuccess());
+//     }).catch(error => {
+//       throw(error);
+//     });
+//   };
+// }
 
 
 
@@ -68,12 +97,14 @@ export function getUserMatches(id) {
 }
 
 export function addUser(name, age, gender, looking_for, description, street, city, state, image_url) {
+  // add password
   return function(dispatch) {
     $.ajax({
       url: 'http://localhost:3000/users',
       type: "POST",
       data: {user: {name: name, age: age, gender: gender, looking_for: looking_for, description: description, street: street, city: city, state: state, image_url: image_url}}
     }).done(function(resp){
+      localStorage.setItem("token", resp.jwt)
       return dispatch({
          type: "ADD_USER",
          payload: resp

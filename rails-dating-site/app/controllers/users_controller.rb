@@ -28,9 +28,10 @@ class UsersController < ApplicationController
   end
 
   def create
+    byebug
     @user = User.new(user_params)
     if @user.save
-      @match = Match.create(user_params)
+      @match = Match.create(match_params)
       usermatches = @user.find_matches
       usermatches.each do |match|
         distance = Adapter.new.get_distance(@user, match)
@@ -46,7 +47,7 @@ class UsersController < ApplicationController
       end
       render json: @user, status: :created, location: @user
     else
-      render json: @song.errors, status: :unprocessable_entity
+      render json: @user.errors, status: :unprocessable_entity
     end
   end
 
@@ -82,6 +83,10 @@ class UsersController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def user_params
       # byebug
+      params.require(:user).permit(:id, :name, :age, :gender, :description, :looking_for, :street, :city, :state, :image_url, :password_digest)
+    end
+
+    def match_params
       params.require(:user).permit(:id, :name, :age, :gender, :description, :looking_for, :street, :city, :state, :image_url)
     end
 

@@ -1,10 +1,12 @@
 import {browserHistory} from 'react-router';
 
-export default function sessionReducer(state = !!sessionStorage.jwt, action) {
+// state used to be !!sessionStorage.jwt, should it be !!localStorage.token?
+export default function sessionReducer(state = !!localStorage.token=="undefined", action) {
+  // debugger
   switch(action.type) {
     case "LOG_IN_SUCCESS":
-      browserHistory.push('/')
-      return !!sessionStorage.jwt
+    // debugger
+      return !!localStorage.token
     default:
       return state;
   }
