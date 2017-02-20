@@ -29,6 +29,15 @@ export function logInUser(credentials){
     }
 }
 
+export function logoutUser(){
+  return function(dispatch){
+    debugger
+      localStorage.clear()
+      browserHistory.push('/')
+      dispatch({type: "LOG_OUT_SUCCESS", payload: !!localStorage.token})
+  }
+}
+
 
 // export function loginSuccess() {
 //   return {type: "LOG_IN_SUCCESS"}

@@ -13,6 +13,7 @@ class App extends Component {
     this.state = {newUserFormVisible: false, loginFormVisible: false}
     this.handleShowNewUser = this.handleShowNewUser.bind(this)
     this.handleShowLogin = this.handleShowLogin.bind(this)
+    this.handleLogout = this.handleLogout.bind(this)
   }
 
   handleShowNewUser(event) {
@@ -25,15 +26,24 @@ class App extends Component {
     this.setState({loginFormVisible: !this.state.loginFormVisible})
   }
 
+  handleLogout(event) {
+    debugger
+    event.preventDefault()
+    this.props.actions.logoutUser()
+  }
+
   render() {
+    debugger
     return (
       <div className="wrap">
         <div className="App-header">
           <h1 className="header-text" id="header">Sit on your couch. Find love. </h1><br />
           <h3 className="header-text" id="subheader">We get it. We will show you only people who are close by.</h3>
         </div>
+        <p>{localStorage.token ? "Logged in" : "Logged out"}</p>
         <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="add-user-button" onClick={this.handleShowNewUser} type="submit">Add User</button>
-        <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="login-button" onClick={this.handleShowLogin} type="submit">Login</button>
+        <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="login-button" onClick={this.handleShowLogin} type="submit">LOG IN</button>
+        <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="logout-button" onClick={this.handleLogout} type="submit">LOG OUT</button>
         {this.state.loginFormVisible ? <LogInPage actions={this.props.actions} /> : null}
         {this.state.newUserFormVisible ? <NewUser actions={this.props.actions} users={this.props.users}/> : null}
         <UserList matches={this.props.matches} getUsers={this.props.getUsers} users={this.props.users} actions={this.props.actions}/>
