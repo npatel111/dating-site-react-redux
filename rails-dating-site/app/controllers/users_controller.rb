@@ -27,6 +27,7 @@ class UsersController < ApplicationController
     # byebug
   end
 
+
   def create
     # byebug
     @user = User.new(user_params)
