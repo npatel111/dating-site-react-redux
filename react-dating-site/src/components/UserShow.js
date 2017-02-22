@@ -85,6 +85,7 @@ class UserShow extends React.Component {
   }
 
   render() {
+    debugger
     return(
       <div>
           <figure className="mdl-card__media">
@@ -98,8 +99,8 @@ class UserShow extends React.Component {
           </div>
           <div className="mdl-card__actions mdl-card--border">
             <a className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onClick={this.handleShowUserDetail}>Show Details</a>
-            <a className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onClick={this.handleEdit}>Edit User</a>
-            <a className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onClick={this.handleDelete}>Delete User</a>
+            {this.props.session.user_id == this.props.user.id ? <a className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onClick={this.handleEdit}>Edit User</a> : null}
+            {this.props.session.user_id == this.props.user.id ? <a className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onClick={this.handleDelete}>Delete User</a> : null }
             <a className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onClick={this.showMatches}>Show Matches</a>
             <div className="mdl-layout-spacer"></div>
       </div>

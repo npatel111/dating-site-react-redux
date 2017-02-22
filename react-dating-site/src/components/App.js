@@ -46,7 +46,7 @@ class App extends Component {
 
         {this.state.loginFormVisible && !localStorage.token? <LogInPage actions={this.props.actions} /> : null}
         {this.state.newUserFormVisible ? <NewUser actions={this.props.actions} users={this.props.users}/> : null}
-        <UserList matches={this.props.matches} getUsers={this.props.getUsers} users={this.props.users} actions={this.props.actions}/>
+        <UserList session={this.props.session} matches={this.props.matches} getUsers={this.props.getUsers} users={this.props.users} actions={this.props.actions}/>
         {this.props.children}
       </div>
     );
@@ -55,7 +55,7 @@ class App extends Component {
 
 
 function mapStateToProps(state) {
-  return {users: state.users, matches: state.matches}
+  return {users: state.users, matches: state.matches, session: state.session}
 }
 
 function mapDispatchToProps(dispatch) {

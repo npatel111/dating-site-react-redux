@@ -14,7 +14,7 @@ class UserList extends Component {
           {this.props.users.map((user, i) => {
             return (
                 <div key={i} className="mdl-card mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-shadow--2dp">
-                    <UserShow users={this.props.users} user={user} matches={this.props.matches} actions={this.props.actions}/>
+                    <UserShow session={this.props.session} users={this.props.users} user={user} matches={this.props.matches} actions={this.props.actions}/>
                 </div>
             )
           })}

@@ -131,6 +131,7 @@ export function deleteUser(id, name, age, gender, looking_for, description, stre
     $.ajax({
       url: `http://localhost:3000/users/${id}`,
       type: "DELETE",
+      headers: { authorization: localStorage.token },
       data: {user: {id: id, name: name, age: age, gender: gender, looking_for: looking_for, description: description, street: street, city: city, state:state, image_url: image_url}}
     }).done(function(resp){
       return dispatch({

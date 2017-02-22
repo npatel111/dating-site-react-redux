@@ -68,11 +68,13 @@ class UsersController < ApplicationController
   # DELETE /users/1
   def destroy
     @user = User.find(params[:id])
-    @match = Match.find(params[:id])
-    @user.destroy
-    @match.destroy
-
-    #should this destroy that match as well?
+    if @current_user.id == @user.id
+      @match = Match.find(params[:id])
+      @user.destroy
+      @match.destroy
+    else
+      render json: @user.errors, status: :unprocessable_entity
+    end
   end
 
   private
