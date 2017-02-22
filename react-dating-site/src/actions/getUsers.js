@@ -5,7 +5,7 @@ import { browserHistory } from 'react-router'
 
 export function logInUser(credentials){
   // from other app
-  debugger
+  // debugger
     return function(dispatch){
       $.ajax({
         url: 'http://localhost:3000/login',
@@ -13,13 +13,13 @@ export function logInUser(credentials){
         data: { auth: { name: credentials.name, password: credentials.password } },
         dataType: "json",
       }).done(function(response){
-        debugger
+        // debugger
         if(response.errors){
           alert(response.errors)
           dispatch({type: "FAILED_LOGIN", payload: response})
         }
         else{
-          debugger
+          // debugger
           localStorage.setItem('token', response.jwt)
           browserHistory.push('/')
           dispatch({type: "LOG_IN_SUCCESS", payload: response})
@@ -31,7 +31,7 @@ export function logInUser(credentials){
 
 export function logoutUser(){
   return function(dispatch){
-    debugger
+    // debugger
       localStorage.clear()
       browserHistory.push('/')
       dispatch({type: "LOG_OUT_SUCCESS", payload: !!localStorage.token})
@@ -115,7 +115,8 @@ export function editUser(id, name, age, gender, looking_for, description, street
     $.ajax({
       url: `http://localhost:3000/users/${id}`,
       type: "PATCH",
-      data: {user: {id: id, name: name, age: age, gender: gender, looking_for: looking_for, description: description, street: street, city: city, state: state}}
+      headers: { authorization: localStorage.token },
+      data: {user: {id: id, name: name, age: age, gender: gender, looking_for: looking_for, description: description, street: street, city: city, state: state}},
     }).done(function(resp){
       return dispatch({
          type: "EDIT_USER",

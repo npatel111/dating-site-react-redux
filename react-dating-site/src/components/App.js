@@ -33,7 +33,6 @@ class App extends Component {
   }
 
   render() {
-    debugger
     return (
       <div className="wrap">
         <div className="App-header">

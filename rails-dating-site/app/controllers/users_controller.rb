@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  skip_before_action :verify_authenticity_token
-  skip_before_action :authenticate#, :only => [:index]
+  skip_before_action :verify_authenticity_token#, :only => [:index, :create]
+  skip_before_action :authenticate, :only => [:index, :create]
   # above line removed means you have to authenticate everything
 
 
@@ -54,7 +54,7 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
-    # byebug
+    byebug
     @user = User.find(params[:id])
     @match = Match.find(params[:id])
     if @user.update(user_params)
