@@ -57,7 +57,7 @@ class UsersController < ApplicationController
     byebug
     @user = User.find(params[:id])
     @match = Match.find(params[:id])
-    if @user.update(user_params)
+    if @user.update(user_params) && @current_user.id == @user.id
       @match.update(user_params)
       render json: @user
     else
