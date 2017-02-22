@@ -77,7 +77,7 @@ class UserShow extends React.Component {
   }
 
   showMatches() {
-
+    debugger
     let id = this.props.user.id
     // this.props.actions.getMatches()
     this.props.actions.getMatchesForUser(id)
@@ -101,7 +101,7 @@ class UserShow extends React.Component {
             <a className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onClick={this.handleShowUserDetail}>Show Details</a>
             {this.props.session.user_id == this.props.user.id ? <a className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onClick={this.handleEdit}>Edit User</a> : null}
             {this.props.session.user_id == this.props.user.id ? <a className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onClick={this.handleDelete}>Delete User</a> : null }
-            <a className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onClick={this.showMatches}>Show Matches</a>
+            {this.props.session.user_id == this.props.user.id ? <a className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onClick={this.showMatches}>Show Matches</a> : null }
             <div className="mdl-layout-spacer"></div>
       </div>
         {this.state.matchesVisible ? <UserMatch usermatches={this.props.matches} /> : null}

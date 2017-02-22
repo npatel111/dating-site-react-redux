@@ -44,11 +44,14 @@ export function logoutUser(){
 
 
 export function getMatchesForUser(id) {
+  debugger
   return function(dispatch) {
     $.ajax({
       url: `http://localhost:3000/user_matches/${id}`,
-      type: "GET"
+      type: "GET",
+      headers: { authorization: localStorage.token },
     }).done(function(resp){
+      debugger
       dispatch({
          type: "GET_MATCHES_FOR_USER",
          payload: resp

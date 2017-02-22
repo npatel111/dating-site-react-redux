@@ -1,6 +1,6 @@
 class UserMatchesController < ApplicationController
   skip_before_action :verify_authenticity_token
-  skip_before_action :authenticate
+  skip_before_action :authenticate, :only => [:index, :create]
   # def show
   #     render json: @user_artist
   #   end
@@ -16,9 +16,14 @@ class UserMatchesController < ApplicationController
 
   # GET /user_matches/1
   def show
-    @id = params[:id]
-    @matches_for_user = UserMatch.where("user_id = ?", @id)
-    render json: @matches_for_user
+    debugger
+    @id = params[:id].to_i
+    if @current_user.id == @id
+      @matches_for_user = UserMatch.where("user_id = ?", @id)
+      render json: @matches_for_user
+    else
+      render json: User.find(@id).errors, status: :unprocessable_entity
+    end
   end
 
   # # POST /users_artists
