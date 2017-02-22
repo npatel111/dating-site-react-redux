@@ -95,14 +95,15 @@ export function getUserMatches(id) {
   }
 }
 
-export function addUser(name, age, gender, looking_for, description, street, city, state, image_url) {
+export function addUser(name, password, age, gender, looking_for, description, street, city, state, image_url) {
   // add password
   return function(dispatch) {
     $.ajax({
       url: 'http://localhost:3000/users',
       type: "POST",
-      data: {user: {name: name, age: age, gender: gender, looking_for: looking_for, description: description, street: street, city: city, state: state, image_url: image_url}}
+      data: {user: {name: name, password: password, age: age, gender: gender, looking_for: looking_for, description: description, street: street, city: city, state: state, image_url: image_url}}
     }).done(function(resp){
+      debugger
       localStorage.setItem("token", resp.jwt)
       return dispatch({
          type: "ADD_USER",

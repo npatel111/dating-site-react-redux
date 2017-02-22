@@ -10,7 +10,7 @@ const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/npatel/image/uplo
 class NewUser extends Component {
   constructor(props) {
     super(props)
-    this.state = {visible: true, uploadedFileCloudinaryUrl: "", name: "", age: "", gender: "", looking_for: "", description: "", street: "", city: "", state: ""}
+    this.state = {visible: true, uploadedFileCloudinaryUrl: "", name: "", password:"", age: "", gender: "", looking_for: "", description: "", street: "", city: "", state: ""}
     this.handleClick = this.handleClick.bind(this)
   }
 
@@ -40,8 +40,8 @@ class NewUser extends Component {
 
   handleClick(event) {
     event.preventDefault()
-    this.props.actions.addUser(this.state.name, this.state.age, this.state.gender, this.state.looking_for, this.state.description, this.state.street, this.state.city, this.state.state, this.state.uploadedFileCloudinaryUrl)
-    this.setState({visible: !this.state.visible, name: "", age: "", gender: "", description: "", looking_for: "", street: "", city: "", state: "", uploadedFileCloudinaryUrl: ""})
+    this.props.actions.addUser(this.state.name, this.state.password, this.state.age, this.state.gender, this.state.looking_for, this.state.description, this.state.street, this.state.city, this.state.state, this.state.uploadedFileCloudinaryUrl)
+    this.setState({visible: !this.state.visible, name: "", password: "", age: "", gender: "", description: "", looking_for: "", street: "", city: "", state: "", uploadedFileCloudinaryUrl: ""})
   }
 
   handleChange(propertyName, event) {
@@ -67,6 +67,12 @@ class NewUser extends Component {
                         <label className="mdl-textfield__label" htmlFor="username">Pick a Username:</label>
                         <input className="mdl-textfield__input" type="text" value={this.state.name} onChange={this.handleChange.bind(this, "name")} /><br />
                       </div>
+
+                      <div className="mdl-textfield mdl-js-textfield">
+                        <label className="mdl-textfield__label">Password: </label>
+                        <input className="mdl-textfield__input" type="password" value={this.state.password} onChange={this.handleChange.bind(this, "password")}/><br />
+                      </div>
+
                       <div className="mdl-textfield mdl-js-textfield">
                         <label className="mdl-textfield__label">Age: </label>
                         <input className="mdl-textfield__input" type="text" value={this.state.age} onChange={this.handleChange.bind(this, "age")}/><br />
