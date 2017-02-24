@@ -10,7 +10,7 @@ const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/npatel/image/uplo
 class NewUser extends Component {
   constructor(props) {
     super(props)
-    this.state = {visible: true, uploadedFileCloudinaryUrl: "", name: "", password:"", age: "", gender: "", looking_for: "", description: "", street: "", city: "", state: ""}
+    this.state = {visible: true, uploadedFileCloudinaryUrl: "", name: "", password:"", age: "", gender: "", looking_for: "", max_travel: "", description: "", street: "", city: "", state: ""}
     this.handleClick = this.handleClick.bind(this)
   }
 
@@ -39,9 +39,10 @@ class NewUser extends Component {
   }
 
   handleClick(event) {
+    debugger
     event.preventDefault()
-    this.props.actions.addUser(this.state.name, this.state.password, this.state.age, this.state.gender, this.state.looking_for, this.state.description, this.state.street, this.state.city, this.state.state, this.state.uploadedFileCloudinaryUrl)
-    this.setState({visible: !this.state.visible, name: "", password: "", age: "", gender: "", description: "", looking_for: "", street: "", city: "", state: "", uploadedFileCloudinaryUrl: ""})
+    this.props.actions.addUser(this.state.name, this.state.password, this.state.age, this.state.gender, this.state.looking_for, Number(this.state.max_travel), this.state.description, this.state.street, this.state.city, this.state.state, this.state.uploadedFileCloudinaryUrl)
+    this.setState({visible: !this.state.visible, name: "", password: "", age: "", gender: "", description: "", looking_for: "", max_travel: 0, street: "", city: "", state: "", uploadedFileCloudinaryUrl: ""})
   }
 
   handleChange(propertyName, event) {
@@ -87,6 +88,13 @@ class NewUser extends Component {
                         <span className="mdl-radio__label">Male</span> <input className="mdl-radio__input" type="radio" value="M" checked={this.state.looking_for === "M"} onChange={this.handleChange.bind(this, "looking_for")} />
                         <span className="mdl-radio__label">Female</span> <input className="mdl-radio__input" type="radio" value="F" checked={this.state.looking_for === "F"} onChange={this.handleChange.bind(this, "looking_for")}/><br />
                       </div>
+
+                      <div className="mdl-textfield mdl-js-textfield">
+                        <label className="mdl-radio__label grey-text">Furthest you would travel for love (m):</label><br />
+                        <input className="mdl-textfield__input" type="number" value={this.state.max_travel} onChange={this.handleChange.bind(this, "max_travel")}/><br />
+                      </div>
+
+
                     </div>
                     <div className="mdl-cell mdl-cell--6-col mdl-card mdl-shadow--2dp">
                       <div className="mdl-textfield mdl-js-textfield">
