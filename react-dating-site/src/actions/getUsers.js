@@ -114,14 +114,15 @@ export function addUser(name, password, age, gender, looking_for, max_travel, de
 }
 
 
-export function editUser(id, name, age, gender, looking_for, description, street, city, state) {
+export function editUser(id, name, age, gender, looking_for, max_travel, description, street, city, state) {
   return function(dispatch) {
     $.ajax({
       url: `http://localhost:3000/users/${id}`,
       type: "PATCH",
       headers: { authorization: localStorage.token },
-      data: {user: {id: id, name: name, age: age, gender: gender, looking_for: looking_for, description: description, street: street, city: city, state: state}},
+      data: {user: {id: id, name: name, age: age, gender: gender, looking_for: looking_for, max_travel: max_travel, description: description, street: street, city: city, state: state}},
     }).done(function(resp){
+      debugger
       return dispatch({
          type: "EDIT_USER",
          payload: resp

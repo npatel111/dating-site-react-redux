@@ -18,7 +18,7 @@ class UserShow extends React.Component {
     this.handleDelete = this.handleDelete.bind(this)
     this.showMatches = this.showMatches.bind(this)
     this.handleShowUserDetail = this.handleShowUserDetail.bind(this)
-    this.state = {uploadedFileCloudinaryUrl: "", detailsVisible: false, matchesVisible: false, matches: [], editFormVisible: false, userInfo: {name: this.props.user.name, age: this.props.user.age, gender: this.props.user.gender, looking_for: this.props.user.looking_for, description: this.props.user.description, street: this.props.user.street, city: this.props.user.city, state: this.props.user.state, image_url: this.props.user.image_url}}
+    this.state = {uploadedFileCloudinaryUrl: "", detailsVisible: false, matchesVisible: false, matches: [], editFormVisible: false, userInfo: {name: this.props.user.name, age: this.props.user.age, gender: this.props.user.gender, looking_for: this.props.user.looking_for, max_travel: this.props.user.max_travel, description: this.props.user.description, street: this.props.user.street, city: this.props.user.city, state: this.props.user.state, image_url: this.props.user.image_url}}
   }
 
   onImageDrop(files) {
@@ -69,7 +69,7 @@ class UserShow extends React.Component {
   handleSubmit(event) {
 
     event.preventDefault()
-    this.props.actions.editUser(this.props.user.id, this.state.userInfo.name, this.state.userInfo.age, this.state.userInfo.gender, this.state.userInfo.looking_for, this.state.userInfo.description, this.state.userInfo.street, this.state.userInfo.city, this.state.userInfo.state, this.state.userInfo.image_url)
+    this.props.actions.editUser(this.props.user.id, this.state.userInfo.name, this.state.userInfo.age, this.state.userInfo.gender, this.state.userInfo.looking_for, this.state.userInfo.max_travel, this.state.userInfo.description, this.state.userInfo.street, this.state.userInfo.city, this.state.userInfo.state, this.state.userInfo.image_url)
     this.setState({editFormVisible: !this.state.editFormVisible})
   }
 
@@ -117,6 +117,11 @@ class UserShow extends React.Component {
             <label>Looking for:</label><br />
             Male <input type="radio" value="M" checked={this.state.userInfo.looking_for === "M"} onChange={this.handleChange.bind(this, "looking_for")} />
             Female <input type="radio" value="F" checked={this.state.userInfo.looking_for === "F"} onChange={this.handleChange.bind(this, "looking_for")}/><br />
+
+            <label>Furthest you would travel for love (m): </label>
+            <input type="number" value={this.state.userInfo.max_travel} onChange={this.handleChange.bind(this, "max_travel")}/><br />
+
+
             <label>Description: </label>
             <input type="text" value={this.state.userInfo.description} onChange={this.handleChange.bind(this, "description")}/><br />
             <label>Street Address: </label>
