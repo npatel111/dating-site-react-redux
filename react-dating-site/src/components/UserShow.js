@@ -85,7 +85,6 @@ class UserShow extends React.Component {
   }
 
   render() {
-    debugger
     return(
       <div>
           <figure className="mdl-card__media">

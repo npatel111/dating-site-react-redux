@@ -16,7 +16,7 @@ class UserMatchesController < ApplicationController
 
   # GET /user_matches/1
   def show
-    debugger
+    
     @id = params[:id].to_i
     if @current_user.id == @id
       @matches_for_user = UserMatch.where("user_id = ?", @id)

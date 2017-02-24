@@ -2,12 +2,6 @@
 
 ## Objectives
 
-* Build a basic dating site
-- Make User List smart
-- Then UserDetail show dumb Component
--
+A dating app! Matches users based on how far away they are, so you can be lazy and not have to travel for love.
 
-
-
-
-   <Link to={`/users/${this.props.user.id}`}></Link>
+Uses Rails API backend with React/Redux frontend.
