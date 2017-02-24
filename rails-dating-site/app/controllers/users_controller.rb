@@ -29,11 +29,12 @@ class UsersController < ApplicationController
 
 
   def create
-    # byebug
+    byebug
     @user = User.new(user_params)
     if @user.save
       @match = Match.create(match_params)
       usermatches = @user.find_matches
+      byebug
       usermatches.each do |match|
         distance = Adapter.new.get_distance(@user, match)
         @usermatch = UserMatch.create(user_id: @user.id, match_id: match.id, distance: distance)
@@ -44,7 +45,7 @@ class UsersController < ApplicationController
             UserMatch.create(user_id: previous_user.id, match_id: @user.id, distance: distance)
           end
         end
-        # But even old user's matches should refresh when new user is added
+        # Even old user's matches should refresh when new user is added
       end
       render json: @user, status: :created, location: @user
     else

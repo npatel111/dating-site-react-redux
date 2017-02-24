@@ -79,7 +79,6 @@ class UserShow extends React.Component {
 
   showMatches() {
     let id = this.props.user.id
-    // this.props.actions.getMatches()
     this.props.actions.getMatchesForUser(id)
     this.setState({ matches: this.props.matches, matchesVisible: !this.state.matchesVisible})
   }
