@@ -9,7 +9,6 @@ class UserDetail extends Component {
   constructor(props) {
     super(props)
     this.state = { usermatches: [], matchesVisible: false}
-    // this.showMatchesForUser = this.showMatchesForUser.bind(this)
   }
 
 render() {
@@ -31,6 +30,7 @@ render() {
               <p>Gender: {this.props.location.state.user.gender}</p>
               <p>Description: {this.props.location.state.user.description}</p>
               <p>Looking for: {this.props.location.state.user.looking_for}</p>
+              <p>Will travel: {this.props.location.state.user.max_travel}m</p>
               <p>Street: {this.props.location.state.user.street}</p>
               <p>City: {this.props.location.state.user.city}</p>
               <p>State: {this.props.location.state.user.state}</p>
