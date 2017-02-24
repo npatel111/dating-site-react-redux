@@ -13,13 +13,13 @@ export function logInUser(credentials){
         data: { auth: { name: credentials.name, password: credentials.password } },
         dataType: "json",
       }).done(function(response){
-        // debugger
+        debugger
         if(response.errors){
           alert(response.errors)
           dispatch({type: "FAILED_LOGIN", payload: response})
         }
         else{
-          // debugger
+          debugger
           localStorage.setItem('token', response.jwt)
           browserHistory.push('/')
           dispatch({type: "LOG_IN_SUCCESS", payload: response})
