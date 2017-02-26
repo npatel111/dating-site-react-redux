@@ -4,8 +4,6 @@ import { browserHistory } from 'react-router'
 
 
 export function logInUser(credentials){
-  // from other app
-  // debugger
     return function(dispatch){
       $.ajax({
         url: 'http://localhost:3000/login',
