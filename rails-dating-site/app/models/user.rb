@@ -6,18 +6,18 @@ class User < ApplicationRecord
 
   def find_matches
     @user = self
-    debugger
+    # debugger
     matches = Match.all.select do |person|
       distance = Adapter.new.get_distance(@user, person)
-      debugger
+      # debugger
       person.id != self.id && person.looking_for == self.gender && person.gender == self.looking_for && self.max_travel > distance && person.max_travel > distance
     end
-    debugger
+    # debugger
     return matches
   end
 
   def is_match?(user)
-    debugger
+    # debugger
     distance = Adapter.new.get_distance(self, user)
     return self.id != user.id && self.looking_for == user.gender && self.gender == user.looking_for && self.max_travel > distance && user.max_travel > distance
   end

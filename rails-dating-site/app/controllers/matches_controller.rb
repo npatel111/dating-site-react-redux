@@ -3,8 +3,6 @@ class MatchesController < ApplicationController
   skip_before_action :authenticate
   # above line removed means you have to authenticate everything
 
-
-
   def index
     @matches = Match.all
     render json: @matches

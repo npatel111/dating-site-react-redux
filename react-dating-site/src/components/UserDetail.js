@@ -12,7 +12,7 @@ class UserDetail extends Component {
   }
 
 render() {
-  debugger
+  // debugger
   const divStyle = {
     maxHeight: "100%",
     backgroundImage: 'url(' + this.props.location.state.user.image_url + ')' ,

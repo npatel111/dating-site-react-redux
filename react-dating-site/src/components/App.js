@@ -27,7 +27,7 @@ class App extends Component {
   }
 
   handleLogout(event) {
-    debugger
+    // debugger
     event.preventDefault()
     this.props.actions.logoutUser()
   }

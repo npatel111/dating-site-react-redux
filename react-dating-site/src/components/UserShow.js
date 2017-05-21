@@ -47,7 +47,7 @@ class UserShow extends React.Component {
   }
 
   handleShowUserDetail(event) {
-    debugger
+    // debugger
     this.setState({detailsVisible: !this.state.detailsVisible})
     browserHistory.push({
       pathname: `/users/${this.props.user.id}`,

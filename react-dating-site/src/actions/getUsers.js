@@ -11,13 +11,13 @@ export function logInUser(credentials){
         data: { auth: { name: credentials.name, password: credentials.password } },
         dataType: "json",
       }).done(function(response){
-        debugger
+        // debugger
         if(response.errors){
           alert(response.errors)
           dispatch({type: "FAILED_LOGIN", payload: response})
         }
         else{
-          debugger
+          // debugger
           localStorage.setItem('token', response.jwt)
           browserHistory.push('/')
           dispatch({type: "LOG_IN_SUCCESS", payload: response})
@@ -42,14 +42,14 @@ export function logoutUser(){
 
 
 export function getMatchesForUser(id) {
-  debugger
+  // debugger
   return function(dispatch) {
     $.ajax({
       url: `http://localhost:3000/user_matches/${id}`,
       type: "GET",
       headers: { authorization: localStorage.token },
     }).done(function(resp){
-      debugger
+      // debugger
       dispatch({
          type: "GET_MATCHES_FOR_USER",
          payload: resp
@@ -94,14 +94,14 @@ export function getUserMatches(id) {
 }
 
 export function addUser(name, password, age, gender, looking_for, max_travel, description, street, city, state, image_url) {
-  debugger
+  // debugger
   return function(dispatch) {
     $.ajax({
       url: 'http://localhost:3000/users',
       type: "POST",
       data: {user: {name: name, password: password, age: age, gender: gender, looking_for: looking_for,  description: description, street: street, city: city, state: state, image_url: image_url, max_travel: max_travel}}
     }).done(function(resp){
-      debugger
+      // debugger
       localStorage.setItem("token", resp.jwt)
       return dispatch({
          type: "ADD_USER",
@@ -120,7 +120,7 @@ export function editUser(id, name, age, gender, looking_for, max_travel, descrip
       headers: { authorization: localStorage.token },
       data: {user: {id: id, name: name, age: age, gender: gender, looking_for: looking_for, max_travel: max_travel, description: description, street: street, city: city, state: state}},
     }).done(function(resp){
-      debugger
+      // debugger
       return dispatch({
          type: "EDIT_USER",
          payload: resp
