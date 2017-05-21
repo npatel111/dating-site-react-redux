@@ -15,3 +15,4 @@ Still to do:
 4. Adding user should log you in automatically
 5. Tests
 6. Refresh seems to log you out? Although token is still in localStorage
+7. Get rid of Textinput file.
