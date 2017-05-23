@@ -16,3 +16,4 @@ Still to do:
 5. Tests
 6. Refresh seems to log you out? Although token is still in localStorage
 7. Get rid of Textinput file.
+- In new user form placeholder should go away on typing
