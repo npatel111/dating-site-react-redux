@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 //are selected matches objects?
 //could sort them here?
 export default function UserMatch(props) {
-  debugger
+  // debugger
   return (
     <div>
       <p>Matched With: </p>

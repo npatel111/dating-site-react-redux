@@ -7,7 +7,7 @@ A dating app! Matches users based on how far away they are, so you can be lazy a
 Uses Rails API backend with React/Redux frontend.
 
 Still to do:
-- If logged in should only show you your matches. Currently shows you everyone
+- If logged in should only show you your matches. Currently shows you everyone - done
 - If logged in - show details should be my account button, should show that information, allow edits
 1. Be able to crop pictures properly using Cloudinary
 2. Match users randomly but keep in mind location and maybe age?

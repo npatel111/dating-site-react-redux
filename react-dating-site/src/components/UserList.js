@@ -46,9 +46,9 @@ class UserList extends Component {
   // }
 
   render() {
-    debugger
+    // debugger
     if (localStorage.token && this.props.session.user_id) {
-      debugger
+      // debugger
       var userIs = this.props.matches[1].selectedMatches.map(obj => obj.user)
 
     } else {

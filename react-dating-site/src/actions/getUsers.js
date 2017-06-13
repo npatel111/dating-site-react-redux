@@ -11,22 +11,18 @@ export function logInUser(credentials){
         data: { auth: { name: credentials.name, password: credentials.password } },
         dataType: "json",
       }).done(function(response){
-        // debugger
         if(response.errors) {
           alert(response.errors)
           dispatch({type: "FAILED_LOGIN", payload: response})
         } else {
-          debugger //do you know userid?
           localStorage.setItem('token', response.jwt)
           browserHistory.push('/')
           dispatch({type: "LOG_IN_SUCCESS", payload: response})
-          debugger
           $.ajax({
             url: `http://localhost:3000/user_matches/${response.user.id}`,
             type: "GET",
             headers: { authorization: localStorage.token },
           }).done(function(resp){
-            debugger
             dispatch({
                type: "GET_MATCHES_FOR_USER",
                payload: resp
@@ -48,14 +44,12 @@ export function logoutUser(){
 }
 
 export function getMatchesForUser(id) {
-  debugger
   return function(dispatch) {
     $.ajax({
       url: `http://localhost:3000/user_matches/${id}`,
       type: "GET",
       headers: { authorization: localStorage.token },
     }).done(function(resp){
-      debugger
       dispatch({
          type: "GET_MATCHES_FOR_USER",
          payload: resp
