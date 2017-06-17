@@ -65,7 +65,7 @@ class App extends Component {
         {localStorage.user_id ? <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="logout-button" onClick={this.handleLogout} type="submit">LOG OUT</button> : <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="login-button" onClick={this.handleShowLogin} type="submit">LOG IN</button> }
         {!localStorage.user_id ? <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="add-user-button" onClick={this.handleShowNewUser} type="submit">Add User</button> : null }
         {this.state.editFormVisible ? <EditUser user={currentUser} /> : null }
-        {this.props.session.user_id ? <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onClick={this.handleShowEditForm} type="submit">Edit User</button> : null }
+        {localStorage.user_id ? <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onClick={this.handleShowEditForm} type="submit">Edit User</button> : null }
         {this.state.loginFormVisible && !localStorage.token? <LogInPage actions={this.props.actions} /> : null}
         {this.state.newUserFormVisible ? <NewUser actions={this.props.actions} users={this.props.users}/> : null}
         <UserList usermatches={usermatches} session={this.props.session} matches={this.props.matches} getUsers={this.props.getUsers} users={this.props.users} actions={this.props.actions}/>

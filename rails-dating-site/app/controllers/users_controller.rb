@@ -29,12 +29,12 @@ class UsersController < ApplicationController
 
 
   def create
-    byebug
+    # byebug
     @user = User.new(user_params)
     if @user.save
       @match = Match.create(match_params)
       usermatches = @user.find_matches
-      byebug
+      # byebug
       usermatches.each do |match|
         distance = Adapter.new.get_distance(@user, match)
         @usermatch = UserMatch.create(user_id: @user.id, match_id: match.id, distance: distance)
@@ -55,7 +55,7 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
-    byebug
+    # byebug
     @user = User.find(params[:id])
     @match = Match.find(params[:id])
     if @user.update(user_params) && @current_user.id == @user.id
