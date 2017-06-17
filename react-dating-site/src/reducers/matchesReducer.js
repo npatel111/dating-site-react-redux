@@ -3,7 +3,7 @@ export default function matchesReducer(state=[{allMatches: []}, {selectedMatches
     case "GET_MATCHES":
       return [{allMatches: state[0].allMatches.concat(action.payload)}, {selectedMatches: state[1].selectedMatches}]
     case "GET_MATCHES_FOR_USER":
-    debugger
+    // debugger
     // does this change state back to all users though? Check for bugs
     //selected matches is just a list of users, but for each user there should be a distance
       let match_ids = action.payload.map((person) => person.match_id)

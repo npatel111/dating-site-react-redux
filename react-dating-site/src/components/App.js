@@ -46,7 +46,12 @@ class App extends Component {
           return (user.id === id);
       });
       if (currentUser) {
+        debugger
+        var usermatches = this.props.matches;
         currentUser = currentUser[0]
+        localStorage.user_id = currentUser.id
+        window.localStorage.setItem('user', JSON.stringify(currentUser))
+        window.localStorage.setItem('usermatches', JSON.stringify(this.props.matches))
       }
     }
 
@@ -57,13 +62,13 @@ class App extends Component {
           <h1 className="header-text" id="header">Are you too tired? You can still find love. </h1><br />
           <h3 className="header-text" id="subheader">We get it. We will show you only people who are close by.</h3>
         </div>
-        {localStorage.token ? <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="logout-button" onClick={this.handleLogout} type="submit">LOG OUT</button> : <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="login-button" onClick={this.handleShowLogin} type="submit">LOG IN</button> }
-        {!localStorage.token ? <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="add-user-button" onClick={this.handleShowNewUser} type="submit">Add User</button> : null }
+        {localStorage.user_id ? <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="logout-button" onClick={this.handleLogout} type="submit">LOG OUT</button> : <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="login-button" onClick={this.handleShowLogin} type="submit">LOG IN</button> }
+        {!localStorage.user_id ? <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="add-user-button" onClick={this.handleShowNewUser} type="submit">Add User</button> : null }
         {this.state.editFormVisible ? <EditUser user={currentUser} /> : null }
         {this.props.session.user_id ? <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onClick={this.handleShowEditForm} type="submit">Edit User</button> : null }
         {this.state.loginFormVisible && !localStorage.token? <LogInPage actions={this.props.actions} /> : null}
         {this.state.newUserFormVisible ? <NewUser actions={this.props.actions} users={this.props.users}/> : null}
-        <UserList session={this.props.session} matches={this.props.matches} getUsers={this.props.getUsers} users={this.props.users} actions={this.props.actions}/>
+        <UserList usermatches={usermatches} session={this.props.session} matches={this.props.matches} getUsers={this.props.getUsers} users={this.props.users} actions={this.props.actions}/>
         {this.props.children}
       </div>
     );
