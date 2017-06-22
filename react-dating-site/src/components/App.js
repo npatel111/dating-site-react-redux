@@ -37,6 +37,7 @@ class App extends Component {
     // debugger
     event.preventDefault()
     this.props.actions.logoutUser()
+    this.setState({loginFormVisible: !this.state.loginFormVisible})
   }
 
   render() {
