@@ -6,6 +6,7 @@ import { browserHistory } from 'react-router'
 export function logInUser(credentials){
   // debugger
     return function(dispatch){
+      debugger
       $.ajax({
         url: 'http://localhost:3000/login',
         type: "POST",

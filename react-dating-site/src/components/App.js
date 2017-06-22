@@ -45,7 +45,7 @@ class App extends Component {
       var currentUser = this.props.users.filter(function (user) {
           return (user.id === id);
       });
-      if (currentUser) {
+      if (currentUser && currentUser.length > 0) {
         debugger
         var usermatches = this.props.matches;
         currentUser = currentUser[0]

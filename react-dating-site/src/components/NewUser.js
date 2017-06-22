@@ -42,7 +42,7 @@ class NewUser extends Component {
     // debugger
     event.preventDefault()
     this.props.actions.addUser(this.state.name, this.state.password, this.state.age, this.state.gender, this.state.looking_for, Number(this.state.max_travel), this.state.description, this.state.street, this.state.city, this.state.state, this.state.uploadedFileCloudinaryUrl)
-    // debugger
+    debugger
     this.props.actions.logInUser({name: this.state.name, password: this.state.password});
     this.setState({visible: !this.state.visible, name: "", password: "", age: "", gender: "", description: "", looking_for: "", max_travel: 0, street: "", city: "", state: "", uploadedFileCloudinaryUrl: ""})
   }

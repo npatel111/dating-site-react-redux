@@ -24,7 +24,6 @@ class MatchesController < ApplicationController
 
   # PATCH/PUT /matches/1
   def update
-    # byebug
     @match = Match.find(params[:id])
     if @match.update(match_params)
       render json: @match

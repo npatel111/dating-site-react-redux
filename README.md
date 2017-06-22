@@ -10,10 +10,10 @@ Still to do:
 
 - Should My account/show details page be on a different page?
 - Better way of dealing with refreshes?
+- After add user, user is logged in automatically but takes a long time
 1. Be able to crop pictures properly using Cloudinary
-2. Match users randomly but keep in mind location and maybe age?
+2. Match users randomly but keep in mind location and maybe age? - Better algorithm overall
 3. Match multiple genders
-4. NEXT - Adding user should log you in automatically
 5. Tests
 7. Get rid of Textinput file.
 - In new user form placeholder should go away on typing

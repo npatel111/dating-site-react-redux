@@ -13,11 +13,11 @@ class UserList extends Component {
   render() {
     // debugger
     if (localStorage.token && this.props.session.user_id) {
-      debugger
+      // debugger
       var userIs = this.props.matches[1].selectedMatches.map(obj => obj.user)
       var usermatches = userIs;
     } else if (localStorage.token && !this.props.session.user_id) {
-      debugger
+      // debugger
       var userIs = this.props.users
       var storageUser = window.localStorage.getItem('usermatches');
       if (storageUser) {
