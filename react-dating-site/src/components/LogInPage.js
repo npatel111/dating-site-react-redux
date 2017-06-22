@@ -31,13 +31,14 @@ class LogInPage extends React.Component {
       < div>
         <p>Log In</p>
         < form>
-          < TextInput
+          <label>Name:</label>
+          < input type="text"
             name="name"
-            label="name"
             value={this.state.credentials.name}
             onChange={this.onChange}/>
-
-          < TextInput
+          <br />
+          <label>Password:</label>
+          < input
             name="password"
             label="password"
             type="password"
