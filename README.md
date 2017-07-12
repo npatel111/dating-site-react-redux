@@ -15,7 +15,7 @@ Still to do:
 2. Match users randomly but keep in mind location and maybe age? - Better algorithm overall
 3. Match multiple genders
 5. Tests
-7. Get rid of Textinput file.
+7. Get rid of Textinput file. - currently commented out, remove once sure it doesn't cause bugs
 - In new user form placeholder should go away on typing
 
 DONE
